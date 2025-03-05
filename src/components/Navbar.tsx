@@ -1,15 +1,33 @@
+"use client";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 export default function Navbar() {
+  const pathname = usePathname();
+
+  const navItems = [
+    { name: "Home", path: "/" },
+    { name: "About", path: "/about" },
+    { name: "Projects", path: "/projects" },
+    { name: "Contact", path: "/contact" },
+  ];
+
   return (
-    <nav className="w-full p-4 bg-gray-800 text-white">
-      <div className="container mx-auto flex justify-between">
-        <h1 className="text-xl font-bold">My Portfolio</h1>
+    <nav className="fixed top-0 left-0 w-full bg-gray-800 text-white shadow-md h-14 p-4 z-50">
+      <div className="container mx-auto flex justify-between items-center">
+        <h1 className="text-xl font-bold">Joshua Hughes</h1>
         <div className="space-x-4">
-          <Link href="/" className="hover:text-gray-400">Home</Link>
-          <Link href="/about" className="hover:text-gray-400">About</Link>
-          <Link href="/projects" className="hover:text-gray-400">Projects</Link>
-          <Link href="/contact" className="hover:text-gray-400">Contact</Link>
+          {navItems.map((item) => (
+            <Link
+              key={item.path}
+              href={item.path}
+              className={`hover:text-gray-400 ${
+                pathname === item.path ? "underline text-gray-300" : ""
+              }`}
+            >
+              {item.name}
+            </Link>
+          ))}
         </div>
       </div>
     </nav>
