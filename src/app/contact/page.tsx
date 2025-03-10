@@ -59,7 +59,7 @@ export default function Contact() {
       <div className="max-w-md w-full">
         <h1 className="text-4xl font-bold">Contact Me</h1>
         <p className="text-center text-gray-400 mb-6">
-          I'd love to hear from you! Fill out the form below to get in touch.
+          I&apos;d love to hear from you! Fill out the form below to get in touch.
         </p>
         {success && <p className="mb-4 text-green-500 text-center">{success}</p>}
         <form className="space-y-4" onSubmit={handleSubmit}>
