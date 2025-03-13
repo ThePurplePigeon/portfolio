@@ -5,7 +5,7 @@ import { FaSpinner } from "react-icons/fa";
 export default function Contact() {
   //state for form values
   const[name, setName] = useState("");
-  const[email, setEmail] = useState("");  
+  const[email, setEmail] = useState("");
   const[message, setMessage] = useState("");
 
   //state for error msg

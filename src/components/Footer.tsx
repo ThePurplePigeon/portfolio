@@ -1,5 +1,6 @@
 "use client";
 import { FaGithub, FaLinkedin, FaEnvelope } from "react-icons/fa";
+import Link from "next/link";
 
 export default function Footer() {
   return (
@@ -79,14 +80,14 @@ export default function Footer() {
       </div>
 
       <div className="mt-4 space-x-2">
-        <a href="/" className="hover:text-gray-400">Home |</a>
+        <Link href="/" className="hover:text-gray-400">Home |</Link>
         <a href="/about" className="hover:text-gray-400">About |</a>
         <a href="/projects" className="hover:text-gray-400">Projects |</a>
         <a href="/contact" className="hover:text-gray-400">Contact</a>
       </div>
 
       <p className="mt-2 text-sm text-gray-400">
-        "The most important step a man can take. It's not the first one, is it? It's the next one." - Brandon Sanderson
+        &quot;The most important step a man can take. It&apos;s not the first one, is it? It&apos;s the next one.&quot; - Brandon Sanderson
       </p>
     </footer>
   );
