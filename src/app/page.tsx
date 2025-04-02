@@ -2,6 +2,7 @@
 
 import { ReactTyped } from 'react-typed';
 import Image from 'next/image';
+import Link from 'next/link';
 
 export default function Home() {
   return (
@@ -135,38 +136,56 @@ export default function Home() {
       </section>
 
 
-      {/*projects*/}
+      {/* Featured Projects */}
       <section className="p-6">
-        <h2 className="text-3xl font-bold text-center mb-4">Featured Projects</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto"> {/*Change 'md:grid-cols-2' to 'md:grid-cols-3' when a third project is added.*/}
-          {/*Prettier-er*/}
+        <h2 className="text-3xl font-bold text-center mb-6">Featured Projects</h2>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+          {/* Prettier-er */}
           <div className="bg-gray-800 p-4 rounded shadow hover:shadow-lg transition">
             <h3 className="text-xl font-semibold">Prettier-er</h3>
-            <p className="text-grey-400 text-sm">
-              Prettier-er is a VS-Code extension that builds on the popular Prettier formatter, with a focus on user preference. Prettier-er also includes a code readability analysis tool, based on research into readability metrics.
+            <p className="text-gray-400 text-sm">
+              A VS-Code extension enhancing Prettier with custom user preferences and readability analysis.
             </p>
-            <a
-              href="/projects"
+            <Link
+              href="/projects/prettier-er"
               className="inline-block mt-2 text-blue-400 hover:underline"
             >
               View Project →
-            </a>
+            </Link>
           </div>
-          {/*Tasker*/}
+
+          {/* Tasker */}
           <div className="bg-gray-800 p-4 rounded shadow hover:shadow-lg transition">
             <h3 className="text-xl font-semibold">Tasker</h3>
-            <p className="text-grey-400 text-sm">
-              Tasker is a simple, QT-based task management application, made for students and built for my Software Engineering class. Tasker includes a feature to read through a calender file to generate tasks.
+            <p className="text-gray-400 text-sm">
+              A QT-based task management application tailored for students, featuring calendar integration.
             </p>
-            <a
-              href="/projects"
+            <Link
+              href="/projects/tasker"
               className="inline-block mt-2 text-blue-400 hover:underline"
             >
               View Project →
-            </a>
+            </Link>
+          </div>
+
+          {/* SCDB Database & Trends */}
+          <div className="bg-gray-800 p-4 rounded shadow hover:shadow-lg transition">
+            <h3 className="text-xl font-semibold">SCDB Database & Trends</h3>
+            <p className="text-gray-400 text-sm">
+              A web app using Python and SQL to visualize complex trends from SCDB data through interactive queries.
+            </p>
+            <Link
+              href="/projects/scdb-database-trends"
+              className="inline-block mt-2 text-blue-400 hover:underline"
+            >
+              View Project →
+            </Link>
           </div>
         </div>
       </section>
+
+
 
       {/*contact cta*/}
       <section className="bg-gray-900 p-6 text-center border-t border-gray-700">
