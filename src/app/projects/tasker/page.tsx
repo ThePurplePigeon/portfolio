@@ -31,8 +31,7 @@ export default function TaskerShowcase() {
                 Tasker
               </h1>
               <p className="text-lg md:text-xl text-gray-300 max-w-xl">
-                A Qt desktop app that converts your Canvas&nbsp;.ics calendar into
-                weighted, color-coded to-dos—built for overloaded students.
+                A Qt desktop app that converts your Canvas&nbsp;.ics calendar into weighted, color-coded to-dos—built for overloaded students.
               </p>
             </div>
 
@@ -72,13 +71,6 @@ export default function TaskerShowcase() {
                   />
                   <h3 className="text-2xl font-semibold">What is Tasker?</h3>
                 </div>
-
-                { /*
-                  Gonna do some writing here to explain what Tasker is, and the cool things about it.
-
-                  Tasker is a Qt-based windows desktop application that allows students to create and sort tasks by due date, importance, grade weight, and class. Importantly, Tasker has a built-in .ics (calender file) importer that lets students import their canvas calendar, automatically populating their task list with all their assignments, quizzes, and tests. Tasker's goal as an application is to help students prioritize their most important tasks, and to help them stay on top of their assignments.
-                */}
-
                 <p className="text-lg text-gray-300">
                   Tasker is a Qt-based desktop application designed specifically for students, allowing them to organize their assignments, quizzes, and exams into a clear, prioritized task list. A key feature is Tasker's built-in <code className="mx-1">.ics</code> importer, which lets students effortlessly populate their to-do lists by directly importing calendar files exported from Canvas.
                 </p>
@@ -89,12 +81,6 @@ export default function TaskerShowcase() {
               </div>
 
               {/* My Role */}
-
-              { /* This section describes my role in the project, what I did, and how I contributed to the project. Like above, i'll write out brain to text here first, then make it sound pretty in the paragraphs.
-                  The team was 4 people total. The point of the class, intro to software engineering, was on using Agile methodology. The project was all about putting into practice what we were learning for some eLearning application. As such, the application itself was not the focus, but the process of building it: making different presentations to different types of audiences (one to the client, one to management, and one to developers), making documentation, and using agile practices like storyboarding, sprints, daily scrums (though given it's a class, it was every few days), and retrospectives.
-                  My role was one of the 2 developers. I handled the backend of the code with regard to the tasks themselves: creating the task object and related .tsk file format for storing tasks, writing the .ics importer, and creating some of the Qt UI that dealt with specifically making and editing tasks.
-                  The UI was the most collaborative part of the project. We spent a few nights in call working on different elements of it together, using github to sync changes. Given one of us had experience with Qt, while the others didn't, we were able to get some nice experience with picking up a new framework and making adoption easier through pair programming.
-              */}
               <div className="bg-gray-700 p-8 rounded-lg shadow-lg border-l-4 border-purple-500 space-y-4">
                 <div className="flex items-center mb-2 pb-2 border-b border-purple-500 group">
                   <FaCode
@@ -147,10 +133,15 @@ export default function TaskerShowcase() {
                 <h3 className="text-xl font-semibold">Import & Filter</h3>
               </div>
               <p className="text-gray-300 leading-relaxed">
-                Tasker ingests a Canvas .ics export file and automatically identifies
-                assignment due dates. It skips over non-task events (e.g., Zoom meetings)
-                and builds a clear list of homework and quiz deadlines—no manual copy/paste
-                required.
+                Tasker's standout feature is its seamless integration with Canvas. Rather than tackling the complexity of the Canvas API, we utilized Canvas's built-in calendar export feature, which provides comprehensive details on assignments, quizzes, and tests. This streamlined the development process significantly and enabled timely project completion.
+              </p>
+
+              <p className="text-gray-300 leading-relaxed">
+                One challenge was handling irrelevant calendar entries, such as scheduled Zoom meetings included in the exported files. Fortunately, these meetings had a unique identifier, enabling our parser to accurately filter them out. This ensured users received a clean, focused task list containing only relevant academic tasks.
+              </p>
+
+              <p className="text-gray-300 leading-relaxed">
+                This practical approach not only simplified our development but also enhanced usability, allowing students to effortlessly import and organize their academic responsibilities.
               </p>
             </div>
 
@@ -161,10 +152,15 @@ export default function TaskerShowcase() {
                 <h3 className="text-xl font-semibold">Prioritize & Tag</h3>
               </div>
               <p className="text-gray-300 leading-relaxed">
-                After import, users can assign difficulty ratings and grade-weight tags,
-                as well as attach color-coded course labels to each task. Tasker sorts
-                tasks by due date, priority, or weight—making it easy to know what's most
-                important next.
+                Tasker's tagging feature allows users to effectively prioritize and organize their academic responsibilities. Both manually created and imported Canvas tasks can be assigned a difficulty rating based on the user's preferred scale, as well as a grade-weight tag reflecting the task's contribution to their overall course grade. These tags provide additional sorting capabilities, helping students quickly identify the most impactful and critical tasks.
+              </p>
+
+              <p className="text-gray-300 leading-relaxed">
+                Additionally, Tasker supports class-specific tagging, allowing users to label tasks with course identifiers like CIS1234. Users can further enhance visual clarity by color-coding these class tags, significantly reducing visual clutter and enabling rapid identification of tasks within lengthy lists.
+              </p>
+
+              <p className="text-gray-300 leading-relaxed">
+                Together, these tagging and sorting options empower students to maintain clear and focused task lists, ensuring that their efforts align with their academic priorities and deadlines.
               </p>
             </div>
 
@@ -175,11 +171,10 @@ export default function TaskerShowcase() {
                 <h3 className="text-xl font-semibold">Save & Sync</h3>
               </div>
               <p className="text-gray-300 leading-relaxed">
-                Tasker stores data in a simple “.tsk” file in your Documents folder so
-                your task list persists between sessions. You can reopen, update, or even
-                export back to .ics/CSV if needed. Our CircleCI pipeline on GitHub ensures
-                every commit builds successfully and passes unit tests, guarding against
-                regressions.
+                Tasker saves all task information in a simple plaintext <code>.tsk</code> file within its directory structure. This approach, fitting for a sophomore project, kept things straightforward. We used no encryption or complex data layers, just readable and easily managed text files.
+              </p>
+              <p className="text-gray-300 leading-relaxed">
+                When closing Tasker, users are prompted with a dialog to either exit without saving, save and exit, or cancel if there are unsaved changes. There's no autosave feature, so if a user makes a mistake or imports the wrong file, they can simply close and reopen the app without saving, effectively rolling back any unwanted changes.
               </p>
             </div>
           </div>
@@ -200,21 +195,16 @@ export default function TaskerShowcase() {
               <div>
                 <h3 className="text-2xl font-semibold text-purple-300 mb-1">Qt (C++)</h3>
                 <p className="text-gray-300 leading-relaxed">
-                  We chose Qt 5.15 for its cross-platform desktop UI toolkit. All UI elements
-                  (task list, import dialogs, settings) use QWidgets, with signals and slots
-                  managing real-time updates when a new .ics file is imported. Styling leverages
-                  Qt Style Sheets for a dark theme.
+                  We chose Qt 6.x for its desktop UI toolkit. All UI elements (task list, import dialogs, settings) use QWidgets, with signals and slots managing real-time updates when a new .ics file is imported.
                 </p>
               </div>
 
               <div>
                 <h3 className="text-2xl font-semibold text-purple-300 mb-1">
-                  C++17 & JSON
+                  C++17
                 </h3>
                 <p className="text-gray-300 leading-relaxed">
-                  Core logic—parsing .ics files, filtering events, serializing to “.tsk”—is
-                  implemented in modern C++. We use the STL &lt;chrono&gt; library for date/time
-                  comparisons and nlohmann/json for simple JSON handling in unit tests.
+                  We chose C++17 as our primary language for Tasker, leveraging Visual Studio for development and Qt Creator for UI design. Since the project was completed shortly after our programming fundamentals coursework, where C++ was heavily emphasized, it was the language most of the team was comfortable and productive with.
                 </p>
               </div>
 
@@ -223,9 +213,7 @@ export default function TaskerShowcase() {
                   Visual Studio 2019
                 </h3>
                 <p className="text-gray-300 leading-relaxed">
-                  Visual Studio was our IDE on Windows, with the Qt VS Tools extension for building
-                  and debugging. Breakpoints inside signal/slot code helped troubleshoot UI updates
-                  when task properties changed.
+                  We used Visual Studio as our primary IDE for backend development. Its support for C++ projects and partial Qt integration made it easy to manage our codebase and debug core functionality. Once we transitioned to designing the user interface, this setup allowed for a smooth migration to Qt Creator without disrupting our workflow.
                 </p>
               </div>
 
@@ -234,62 +222,9 @@ export default function TaskerShowcase() {
                   GitHub & CircleCI
                 </h3>
                 <p className="text-gray-300 leading-relaxed">
-                  We managed our backlog with GitHub Projects and tracked two-week sprints via Issues
-                  and Pull Requests. CircleCI runs cmake & make on every PR, plus our unit tests
-                  (including .ics→task parsing tests). This ensures new UI changes never break core
-                  functionality.
+                  As part of our Agile workflow, we used GitHub to coordinate changes and manage our codebase. To support continuous integration, we set up CircleCI to run automated tests and builds on every commit, ensuring our code remained stable and that issues were caught early in development.
                 </p>
               </div>
-
-              <div>
-                <h3 className="text-2xl font-semibold text-purple-300 mb-1">
-                  ICS Parsing
-                </h3>
-                <p className="text-gray-300 leading-relaxed">
-                  We wrote a minimal .ics parser in C++ (under 150 lines) to extract DTSTART and SUMMARY
-                  fields, ignoring non-task events. This lightweight approach reduced binary size
-                  by 60 MB and simplified unit testing.
-                </p>
-              </div>
-            </div>
-          </div>
-        </motion.section>
-
-        {/* My Role & Contributions */}
-        <motion.section
-          className="bg-gray-800 p-8 rounded-lg shadow-lg"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          viewport={{ once: true }}
-        >
-          <div className="max-w-4xl mx-auto px-6 space-y-6">
-            <div className="flex items-center mb-4">
-              <FaCode className="text-purple-400 mr-3 text-xl" />
-              <h3 className="text-2xl font-semibold text-purple-300">My Role & Contributions</h3>
-            </div>
-            <div className="space-y-4">
-              <p className="text-gray-300 leading-relaxed">
-                I served as one of three developers on Tasker. My primary focus was the core “task engine”:
-                I designed the “.tsk” file format—a simple JSON wrapper—to store tasks persistently. I implemented
-                C++ classes (e.g., <code>Task</code>, <code>TaskList</code>, <code>CalendarImporter</code>) to
-                parse .ics inputs and serialize back to .tsk. That pipeline became the foundation for everything
-                Tasker does.
-              </p>
-              <p className="text-gray-300 leading-relaxed">
-                In parallel, I pair-programmed our Qt UI for the main task list. Together, we created
-                a custom <code>QAbstractItemModel</code>/ <code>QTableView</code> setup so each task
-                displayed with a colored course tag, a priority icon, and a due date countdown. We mocked up
-                the design in Figma first, then translated it into Qt Designer and hand-crafted the C++
-                logic to push real-time updates whenever task properties changed.
-              </p>
-              <p className="text-gray-300 leading-relaxed">
-                On the Agile side, I volunteered as the “CI/CD lead,” setting up our CircleCI configuration
-                so every push to GitHub ran a <code>cmake && make</code> build and executed unit tests
-                (covering .ics parsing and Qt smoke tests). I also coordinated daily standups and sprint
-                retrospectives, ensuring our GitHub Issues backlog stayed groomed and each PR received a
-                peer review within 24 hours.
-              </p>
             </div>
           </div>
         </motion.section>
@@ -358,26 +293,17 @@ export default function TaskerShowcase() {
                 Challenges & Lessons Learned
               </h3>
             </div>
-            <p className="text-gray-300 leading-relaxed">
-              Implementing the Qt task list with live updates proved challenging. Our initial
-              approach using <code>QStandardItemModel</code> led to memory leaks and UI refresh
-              issues. We refactored to a custom <code>QAbstractItemModel</code> backed by a
-              <code>QVector&lt;Task*&gt;</code>, which let us emit <code>dataChanged</code>
-              correctly and keep the UI stable.
-            </p>
 
             <p className="text-gray-300 leading-relaxed">
-              We also learned that pulling in a full iCalendar library created heavy dependencies and
-              inflated our binary size by 60 MB. Writing a minimal ics parser (under 150 lines) allowed
-              us to filter only the fields we needed—streamlining testing and keeping distribution
-              lightweight.
+              Tasker marked my second significant software project involving a graphical user interface. My previous experience was building a Minesweeper game from scratch using SFML, where I handled every pixel and event manually. Tasker, however, was my first time building a GUI within an actual GUI toolkit, using Qt's suite of widgets and layout tools. This leap introduced me to a completely different way of designing user experiences and set the stage for future work—like the Unity-based character creator I built in my Human-Computer Interaction course.
             </p>
             <p className="text-gray-300 leading-relaxed">
-              Embracing Agile with two-week sprints and daily standups paid off. We quickly surfaced
-              blockers (e.g., broken Qt builds) and resolved them before they derailed our sprint.
-              If we rebuilt Tasker today, we'd consider Electron or Flutter for faster UI prototyping,
-              while preserving our core .ics→task logic in C++ or WebAssembly.
+              The steepest challenge was adopting a brand-new framework and integrating it with our existing C++ backend. Qt offers many high-level tools, like widgets, lists, and dialog boxes,that don't always mesh intuitively with C++ logic. Building and updating the dynamic task list in Qt was especially tricky, and required a lot of teamwork and experimentation. This experience taught me how to quickly learn and integrate unfamiliar technologies, and reinforced the importance of collaborative problem-solving in a team setting.
             </p>
+            <p className="text-gray-300 leading-relaxed">
+              I also learned the value of simplicity in software solutions. While we initially considered integrating Tasker with Canvas through its API, we quickly realized that route was far too complex for our timeline and experience. Instead, using Canvas's calendar export proved to be an elegant, lightweight solution that allowed us to focus on core functionality—and gave me valuable practice with file I/O in C++. In the end, Tasker was full of firsts: my first collaborative software project, my first hands-on use of Agile practices, and my first self-taught deep dive into a new framework. Though the project had its imperfections, it built a strong foundation for my later work; most notably, my senior project Prettier-er.
+            </p>
+
           </div>
         </motion.section>
       </section>
