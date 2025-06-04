@@ -76,10 +76,10 @@ export default function About() {
               <h1 className="text-5xl font-bold">About Me</h1>
             </div>
             <blockquote className="border-l-4 border-purple-500 italic text-gray-300 pl-4 my-4">
-              &quot;The most important step a man can take... It&apos;s the next one.&quot;
+              "The most important step a man can take... It's the next one."
             </blockquote>
             <p className="text-lg">
-              I&apos;m Joshua Hughes, a{" "}
+              I'm Joshua Hughes, a{" "}
               <span className="gradient-text font-semibold">passionate software developer</span>{" "}
               from Hope Mills, North Carolina. I recently graduated with a Bachelor of Science in Computer Science from the University of Florida, where I also minored in Philosophy. My academic journey and hands-on project experience have provided me with a strong foundation in both theoretical knowledge and practical development.
             </p>
@@ -294,7 +294,7 @@ export default function About() {
         {/* Call to Action*/}
         <div className="bg-gray-800 rounded-xl p-6 shadow-lg shadow-purple-500/20 text-center">
           <h2 className="text-2xl font-bold text-white mb-3">Interested in collaborating?</h2>
-          <p className="text-gray-300 mb-4">I&apos;d love to hear from you. Let&apos;s build something great together!</p>
+          <p className="text-gray-300 mb-4">I'd love to hear from you. Let's build something great together!</p>
           <a
             href="/contact"
             className="inline-block bg-gradient-to-r from-purple-500 to-indigo-600 text-white px-6 py-2 rounded-full font-semibold transition-transform duration-300 hover:scale-110 shadow-lg shadow-purple-600/40"

@@ -1,8 +1,8 @@
 "use client";
 
-import { ReactTyped } from 'react-typed';
-import Image from 'next/image';
-import Link from 'next/link';
+import { ReactTyped } from 'react-typed'
+import Image from 'next/image'
+import Link from 'next/link'
 
 export default function Home() {
   return (
@@ -60,7 +60,7 @@ export default function Home() {
 
         {/*hero*/}
         <div className="relative z-10 text-center">
-          <h1 className="text-5xl font-bold">Hello, I&apos;m Joshua</h1>
+          <h1 className="text-5xl font-bold">Hello, I'm Joshua</h1>
           <ReactTyped
             className="mt-4 text-xl text-gray-400"
             strings={[
@@ -103,7 +103,7 @@ export default function Home() {
           {/* Text Column */}
           <div className="w-full md:w-2/3 text-center md:text-left">
             <p className="max-w-2xl mx-auto text-lg">
-              I&apos;m a passionate software developer focused on user-centered design
+              I'm a passionate software developer focused on user-centered design
               and writing maintainable, extensible code. Check out my About page for
               more info!
             </p>
@@ -194,7 +194,7 @@ export default function Home() {
           href="/contact"
           className="inline-block px-6 py-2 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full text-white font-semibold shadow-lg transition-transform transform duration-150 hover:scale-105 hover:shadow-[0_0_10px_3px_rgba(138,43,226,0.8)]"
         >
-          Let&apos;s Talk
+          Let's Talk
         </a>
       </section>
 

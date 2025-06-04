@@ -87,7 +87,7 @@ export default function Footer() {
       </div>
 
       <p className="mt-2 text-sm text-gray-400">
-        &quot;The most important step a man can take. It&apos;s not the first one, is it? It&apos;s the next one.&quot; - Brandon Sanderson
+        "The most important step a man can take. It"s not the first one, is it? It"s the next one." - Brandon Sanderson
       </p>
     </footer>
   );

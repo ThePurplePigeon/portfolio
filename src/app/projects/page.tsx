@@ -7,6 +7,7 @@ const projects = [
   {
     title: "Prettier-er",
     tagline: "The non-opinionated code formatter.",
+    alt: "Prettier-er logo",
     description: "Prettier-er is a VS Code extension that builds on top of Prettier, offering customizable formatting rules and a unique code readability analysis tool. Created as a senior project at UF, it was designed to give developers, new and seasoned, more control over their style choices; making clean, readable code without sacrificing personal or organizational preferences.",
     link: "/projects/prettier-er",
     image: "/prettier-er.png",
@@ -14,6 +15,7 @@ const projects = [
   {
     title: "Tasker",
     tagline: "Your academic tasks, organized your way.",
+    alt: "Tasker logo",
     description: "Tasker is a QT-based task management app designed to help students organize assignments, quizzes, and other deadlines. Built during an intensive two-month software engineering course, the project emphasized agile practices such as storyboarding and sprint planning. Tasker lets users create detailed tasks with customizable metadata—including class, due date, weight, and difficulty—and provides robust filtering and sorting capabilities. A standout feature is its .ics import tool, enabling seamless integration of existing calendars (such as Canvas exports) to auto-populate task lists. I focused primarily on the GUI development, task data management, and implementing the calendar import feature, making this a rewarding introduction to desktop software development.",
     link: "/projects/tasker",
     image: "/tasker.png",
@@ -21,6 +23,7 @@ const projects = [
   {
     title: "SCDB Database & Trends",
     tagline: "Exploring Supreme Court History Through Data Visualization.",
+    alt: "SCDB logo",
     description: "This project was developed as part of my Database Management course, showcasing interactive trend queries based on data from the Supreme Court Database (SCDB). We utilized Python scripts to convert SCDB datasets into structured SQL insert commands, constructing a comprehensive Oracle database. Despite tight deadlines and teamwork challenges, we build a web app using Go, HTML, CSS, and JavaScript to interactively query the database and visualize historical trends, like ideological swings among justices, and voting patterns correlated with presidential appointments. This project not only highlighted fascinating judicial insights, but significantly expanded my skills in rapid problem-solving, database design, API integration, and adaptive leadership under pressure.",
     link: "/projects/scdb-database-trends",
     image: "/scdb.png",
@@ -28,6 +31,7 @@ const projects = [
   {
     title: "Thoughtform Cauldron",
     tagline: "Personality-driven character creation.",
+    alt: "Thoughtform Cauldron logo",
     description: "Built in Unity as part of a Human-Computer Interaction course, Thoughtform Cauldron explored the design of a character creation interface where personality-driven choices defined the resulting character. The project emphasized iterative usability testing and user experience evaluation rather than feature completeness, involving several usability sessions and detailed qualitative analysis to refine the interactive design.",
     link: "/projects/thoughtform-cauldron",
     image: "/thoughtform.png",
@@ -44,7 +48,7 @@ export default function ProjectsOverview() {
           {projects.map((project, index) => (
             <motion.div
               key={project.title}
-              className={`flex flex-col md:flex-row ${index % 2 === 0 ? 'md:flex-row-reverse' : ''} items-center gap-6`}
+              className={`flex flex-col md:flex-row ${index % 2 === 0 ?'md:flex-row-reverse' :''} items-center gap-6`}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
@@ -53,7 +57,7 @@ export default function ProjectsOverview() {
               <div className="w-full md:w-1/2 flex justify-center">
                 <Image
                   src={project.image}
-                  alt={project.title}
+                  alt={project.alt}
                   width={400}
                   height={400}
                   className="rounded-lg shadow-lg object-cover"
@@ -61,7 +65,7 @@ export default function ProjectsOverview() {
               </div>
               <div className="w-full md:w-1/2 flex flex-col justify-center">
                 <h2 className="text-3xl font-semibold mb-1">{project.title}</h2>
-                <h3 className="text-xl italic text-gray-300 mb-3">{project.tagline}</h3>
+                <h3 className="text-lg italic text-gray-300 mb-3">{project.tagline}</h3>
                 <p className="text-gray-400 mb-4">{project.description}</p>
                 <Link
                   href={project.link}
