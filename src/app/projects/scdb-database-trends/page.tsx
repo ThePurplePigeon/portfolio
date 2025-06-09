@@ -238,7 +238,7 @@ export default function ScdbShowcase() {
           <Link
             href="http://scdb.wustl.edu"
             target="_blank"
-            rel="noopener noreferer"
+            rel="noopener noreferrer"
             className="inline-block px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-full font-semibold hover:shadow-lg transition-transform duration-150 hover:scale-105"
           >
             Explore the Supreme Court Database
