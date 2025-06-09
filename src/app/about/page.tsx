@@ -63,7 +63,6 @@ export default function About() {
       <section className="max-w-4xl mx-auto space-y-8">
         {/* Intro */}
         <section className="bg-gray-800 rounded-xl p-6 shadow-lg shadow-purple-700/20 relative overflow-hidden">
-          <div className="absolute inset-0 bg-pattern opacity-30 pointer-events-none"></div>
           <div className="relative z-10">
             <div className="flex items-center gap-4">
               <Image
