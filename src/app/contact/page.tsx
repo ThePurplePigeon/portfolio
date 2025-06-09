@@ -79,11 +79,11 @@ export default function Contact() {
             {errors.name && <p className="text-red-500 text-sm" aria-live="polite">{errors.name}</p>}
           </div>
           <div>
-            <label htmlFor="email" className="block text-sm font-Medium text-gray-300">
+            <label htmlFor="email" className="block text-sm font-medium text-gray-300">
               Email
             </label>
             <input
-              type="text"
+              type="email"
               id="email"
               name="email"
               placeholder="youremail@example.com"

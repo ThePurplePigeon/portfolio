@@ -16,7 +16,7 @@ export default function PrettierErShowcase() {
         backgroundImage: "url('/prettier-er/prettierer_background.png')",
         backgroundSize: "cover",
         backgroundPosition: "center",
-        backgroundAttachment: "fixed", // Optional: parallax effect
+        backgroundAttachment: "fixed",
       }}
     >
       <section className="max-w-5xl mx-auto space-y-12">

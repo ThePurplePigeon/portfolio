@@ -140,7 +140,18 @@ export default function About() {
               {/* Previous */}
               <button
                 onClick={() => handleManualChange((currentCourse - 1 + courses.length) % courses.length)}
-                className="text-purple-400 hover:text-white transition hover:scale-125"
+                className="
+                  text-purple-400 hover:text-white
+                  text-2xl
+                  bg-gray-800 hover:bg-purple-700
+                  p-2
+                  rounded-full
+                  transition
+                  hover:scale-110
+                  ring-1 ring-purple-400/40 focus:ring-purple-400/90
+                  focus:outline-none
+                  mx-2
+                "
                 aria-label="Previous Course"
               >
                 &#10094;
@@ -165,7 +176,18 @@ export default function About() {
               {/* Next */}
               <button
                 onClick={() => handleManualChange((currentCourse + 1) % courses.length)}
-                className="text-purple-400 hover:text-white transition hover:scale-125"
+                className="
+                  text-purple-400 hover:text-white
+                  text-2xl
+                  bg-gray-800 hover:bg-purple-700
+                  p-2
+                  rounded-full
+                  transition
+                  hover:scale-110
+                  ring-1 ring-purple-400/40 focus:ring-purple-400/90
+                  focus:outline-none
+                  mx-2
+                "
                 aria-label="Next Course"
               >
                 &#10095;
@@ -195,65 +217,85 @@ export default function About() {
             Technical Skills
           </h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {/* Languages Card */}
+          {/* Top row: three cards */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {/* Languages */}
             <div className="bg-gray-900 p-4 rounded-lg shadow-md">
               <h3 className="text-xl font-semibold text-purple-400 text-center mb-3">Languages</h3>
               <div className="flex flex-wrap justify-center gap-2">
-                {["C++", "C#", "Java", "Python", "JavaScript"].map((skill) => (
+                {["C++","C#","Java","Python","JavaScript","TypeScript","SQL"].map(s => (
                   <span
-                    key={skill}
-                    className="bg-gray-700 px-3 py-1 rounded text-sm text-gray-300 transition-transform duration-200 hover:scale-110 hover:-translate-y-1 cursor-default"
+                    key={s}
+                    className="bg-gray-700 px-3 py-1 rounded text-sm text-gray-300"
                   >
-                    {skill}
+                    {s}
                   </span>
                 ))}
               </div>
             </div>
 
-            {/* Software Card */}
+            {/* Frameworks & Libs */}
             <div className="bg-gray-900 p-4 rounded-lg shadow-md">
-              <h3 className="text-xl font-semibold text-purple-400 text-center mb-3">Software</h3>
+              <h3 className="text-xl font-semibold text-purple-400 text-center mb-3">Frameworks & Libraries</h3>
               <div className="flex flex-wrap justify-center gap-2">
-                {["Unity", "Unreal", "MATLAB", "MS Office", "GitHub", "Jira"].map((skill) => (
+                {["React","Qt","Unreal","Unity"].map(s => (
                   <span
-                    key={skill}
-                    className="bg-gray-700 px-3 py-1 rounded text-sm text-gray-300 transition-transform duration-200 hover:scale-110 hover:-translate-y-1 cursor-default"
+                    key={s}
+                    className="bg-gray-700 px-3 py-1 rounded text-sm text-gray-300"
                   >
-                    {skill}
+                    {s}
                   </span>
                 ))}
               </div>
             </div>
 
-            {/* Methodologies Card */}
+            {/* Tools */}
+            <div className="bg-gray-900 p-4 rounded-lg shadow-md">
+              <h3 className="text-xl font-semibold text-purple-400 text-center mb-3">Tools</h3>
+              <div className="flex flex-wrap justify-center gap-2">
+                {["GitHub","Jira","MATLAB","VS Code","Visual Studio"].map(s => (
+                  <span
+                    key={s}
+                    className="bg-gray-700 px-3 py-1 rounded text-sm text-gray-300"
+                  >
+                    {s}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Bottom row: centered two cards */}
+          <div className="mt-6 flex justify-center gap-6">
+            {/* Methodologies */}
             <div className="bg-gray-900 p-4 rounded-lg shadow-md">
               <h3 className="text-xl font-semibold text-purple-400 text-center mb-3">Methodologies</h3>
               <div className="flex flex-wrap justify-center gap-2">
-                {["Agile", "Unit Testing", "CI/CD"].map((skill) => (
+                {["Agile","Unit Testing","CI/CD","Usability Testing"].map(s => (
                   <span
-                    key={skill}
-                    className="bg-gray-700 px-3 py-1 rounded text-sm text-gray-300 transition-transform duration-200 hover:scale-110 hover:-translate-y-1 cursor-default"
+                    key={s}
+                    className="bg-gray-700 px-3 py-1 rounded text-sm text-gray-300"
                   >
-                    {skill}
+                    {s}
                   </span>
                 ))}
               </div>
             </div>
 
-            {/* Certifications Card */}
+            {/* Certifications */}
             <div className="bg-gray-900 p-4 rounded-lg shadow-md">
               <h3 className="text-xl font-semibold text-purple-400 text-center mb-3">Certifications</h3>
-              <div className="flex flex-wrap justify-center gap-2">
-                <span
-                  className="bg-gray-700 px-3 py-1 rounded text-sm text-gray-300 transition-transform duration-200 hover:scale-110 hover:-translate-y-1 cursor-default"
-                >
-                  Pursuing CompTIA A+
+              <div className="flex justify-center">
+                <span className="bg-gray-700 px-3 py-1 rounded text-sm text-gray-300">
+                  CompTIA A+ (in progress, est. Sept 2025)
                 </span>
               </div>
             </div>
           </div>
         </div>
+
+
+
 
 
 

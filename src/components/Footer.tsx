@@ -5,89 +5,53 @@ import Link from "next/link";
 export default function Footer() {
   return (
     <footer className="w-full p-6 bg-gray-800 text-white text-center">
-      <p>© {new Date().getFullYear()} Joshua Hughes. All rights reserved.</p>
+      <p className="text-base">
+        © {new Date().getFullYear()} Joshua Hughes. All rights reserved.
+      </p>
 
-      <div className="flex justify-center space-x-4 mt-2">
-        {/* GitHub */}
+      {/* Socials */}
+      <div className="flex justify-center gap-6 mt-3 mb-1">
         <a
           href="https://github.com/ThePurplePigeon"
           target="_blank"
           rel="noopener noreferrer"
+          aria-label="GitHub"
           className="group"
         >
-          <span
-            className="
-              inline-block 
-              text-3xl 
-              text-white 
-              fill-current 
-              transition-all 
-              duration-150
-              group-hover:gradient-text 
-              group-hover:filter 
-              group-hover:drop-shadow-[0_0_10px_#8b5cf6]
-            "
-          >
-            <FaGithub />
-          </span>
+          <FaGithub className="text-3xl text-white group-hover:text-purple-400 transition-all duration-150 drop-shadow" />
         </a>
-
-        {/* LinkedIn */}
         <a
           href="https://linkedin.com/in/joshua-r-hughes"
           target="_blank"
           rel="noopener noreferrer"
+          aria-label="LinkedIn"
           className="group"
         >
-          <span
-            className="
-              inline-block 
-              text-3xl 
-              text-white 
-              fill-current 
-              transition-all 
-              duration-150
-              group-hover:gradient-text 
-              group-hover:filter 
-              group-hover:drop-shadow-[0_0_10px_#8b5cf6]
-            "
-          >
-            <FaLinkedin />
-          </span>
+          <FaLinkedin className="text-3xl text-white group-hover:text-purple-400 transition-all duration-150 drop-shadow" />
         </a>
-
-        {/* Email */}
         <a
           href="mailto:joshua@hughesonthenet.com"
+          aria-label="Email"
           className="group"
         >
-          <span
-            className="
-              inline-block 
-              text-3xl 
-              text-white 
-              fill-current 
-              transition-all 
-              duration-150
-              group-hover:gradient-text 
-              group-hover:filter 
-              group-hover:drop-shadow-[0_0_10px_#8b5cf6]
-            "
-          >
-            <FaEnvelope />
-          </span>
+          <FaEnvelope className="text-3xl text-white group-hover:text-purple-400 transition-all duration-150 drop-shadow" />
         </a>
       </div>
 
-      <div className="mt-4 space-x-2">
-        <Link href="/" className="hover:text-gray-400">Home |</Link>
-        <a href="/about" className="hover:text-gray-400">About |</a>
-        <a href="/projects" className="hover:text-gray-400">Projects |</a>
-        <a href="/contact" className="hover:text-gray-400">Contact</a>
+      {/* Nav Links */}
+      <div className="mt-3 flex justify-center flex-wrap gap-x-2 text-sm">
+        <Link href="/" className="hover:text-purple-400 transition">Home</Link>
+        <span className="text-gray-500">|</span>
+        <Link href="/about" className="hover:text-purple-400 transition">About</Link>
+        <span className="text-gray-500">|</span>
+        <Link href="/projects" className="hover:text-purple-400 transition">Projects</Link>
+        <span className="text-gray-500">|</span>
+        <Link href="/contact" className="hover:text-purple-400 transition">Contact</Link>
       </div>
 
-      <p className="mt-2 text-sm text-gray-400">
-        "The most important step a man can take. It"s not the first one, is it? It"s the next one." - Brandon Sanderson
+      {/* Quote */}
+      <p className="mt-3 text-sm text-gray-400 italic max-w-xl mx-auto">
+        "The most important step a man can take. It's not the first one, is it? It's the next one." – Brandon Sanderson
       </p>
     </footer>
   );
