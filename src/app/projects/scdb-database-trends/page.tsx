@@ -35,7 +35,7 @@ export default function ScdbShowcase() {
           </div>
 
           <Image
-            src="/scdb/intro_graph_placeholder.png"
+            src="/scdb_header.svg"
             alt="Intro illustration"
             width={180}
             height={110}

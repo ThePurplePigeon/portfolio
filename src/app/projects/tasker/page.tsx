@@ -38,10 +38,10 @@ export default function TaskerShowcase() {
             {/* Optional visual (hidden on small screens) */}
             <div className="hidden md:block flex-shrink-0">
               <Image
-                src="/tasker/header_preview.png"   // replace with actual screenshot later
+                src="/tasker/main_screen.png"   // replace with actual screenshot later
                 alt="Tasker main window screenshot"
-                width={260}
-                height={160}
+                width={400}
+                height={250}
                 className="rounded-md ring-1 ring-gray-700/60 object-cover"
                 priority
               />
@@ -252,7 +252,7 @@ export default function TaskerShowcase() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <figure className="space-y-2 flex flex-col items-center">
               <Image
-                src="/tasker/screenshot1.png" // replace with actual path
+                src="/tasker/main_screen.png" // replace with actual path
                 alt="Tasker main screen"
                 width={600}
                 height={400}
@@ -265,7 +265,7 @@ export default function TaskerShowcase() {
 
             <figure className="space-y-2 flex flex-col items-center">
               <Image
-                src="/tasker/screenshot2.png" // replace with actual path
+                src="/tasker/ics_import.png" // replace with actual path
                 alt="Calendar import dialog"
                 width={600}
                 height={400}

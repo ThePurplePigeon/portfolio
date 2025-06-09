@@ -28,14 +28,6 @@ const projects = [
     link: "/projects/scdb-database-trends",
     image: "/scdb.png",
   },
-  {
-    title: "Thoughtform Cauldron",
-    tagline: "Personality-driven character creation.",
-    alt: "Thoughtform Cauldron logo",
-    description: "Built in Unity as part of a Human-Computer Interaction course, Thoughtform Cauldron explored the design of a character creation interface where personality-driven choices defined the resulting character. The project emphasized iterative usability testing and user experience evaluation rather than feature completeness, involving several usability sessions and detailed qualitative analysis to refine the interactive design.",
-    link: "/projects/thoughtform-cauldron",
-    image: "/thoughtform.png",
-  },
 ];
 
 
@@ -49,7 +41,7 @@ export default function ProjectsOverview() {
             <motion.div
               key={project.title}
               className={`flex flex-col md:flex-row ${index % 2 === 0 ?'md:flex-row-reverse' :''} items-center gap-6`}
-              initial={{ opacity: 0, y: 20 }}
+              initial={false}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
               viewport={{ once: true }}
