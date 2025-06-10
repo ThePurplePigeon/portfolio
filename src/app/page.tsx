@@ -10,9 +10,7 @@ import { SiQt, SiCplusplus, SiJavascript, SiTypescript, SiUnrealengine, SiUnity 
 export default function Home() {
   return (
     <main className="bg-gray-900 text-white">
-      {/* Hero */}
       <section className="relative flex flex-col items-center justify-center min-h-[55vh] py-8 px-4 bg-gray-900 overflow-hidden">
-        {/* Profile image */}
         <Image
           src="/me.jpg"
           alt="Picture of Joshua"
@@ -43,9 +41,7 @@ export default function Home() {
         </a>
       </section>
 
-      {/* Quick Stats */}
       <section className="max-w-3xl mx-auto flex flex-wrap justify-center gap-3 py-4 mb-3">
-        {/* Language Badges */}
         <span className="flex items-center bg-gray-800 rounded-full px-3 py-1 text-sm font-semibold text-purple-300 gap-2 shadow-sm">
           <SiCplusplus className="text-blue-400" /> C++
         </span>
@@ -61,7 +57,6 @@ export default function Home() {
         <span className="flex items-center bg-gray-800 rounded-full px-3 py-1 text-sm font-semibold text-blue-500 gap-2 shadow-sm">
           <SiTypescript className="text-blue-400" /> TypeScript
         </span>
-        {/* Framework Badges */}
         <span className="flex items-center bg-gray-800 rounded-full px-3 py-1 text-sm font-semibold text-cyan-300 gap-2 shadow-sm">
           <FaReact className="text-cyan-300" /> React
         </span>
@@ -74,7 +69,6 @@ export default function Home() {
         <span className="flex items-center bg-gray-800 rounded-full px-3 py-1 text-sm font-semibold text-gray-300 gap-2 shadow-sm">
           <SiUnity className="text-gray-300" /> Unity
         </span>
-        {/* Location/Status */}
         <span className="flex items-center bg-gray-800 rounded-full px-3 py-1 text-sm text-gray-300 gap-2 shadow-sm">
           <FaMapMarkerAlt className="text-pink-400" /> North Carolina
         </span>
@@ -86,7 +80,6 @@ export default function Home() {
         </span>
       </section>
 
-      {/* Currently doing */}
       <section className="max-w-2xl mx-auto text-center mt-4 mb-6">
         <div className="inline-block bg-gray-800/90 rounded-xl px-6 py-4 shadow-md border border-purple-500/30">
           <h3 className="text-lg font-semibold mb-1 text-purple-300">
@@ -100,7 +93,6 @@ export default function Home() {
       </section>
 
 
-      {/*intro with image*/}
       <section className="bg-gray-900 p-6">
         <div className="max-w-3xl mx-auto text-center space-y-4">
           <h2 className="text-2xl md:text-3xl font-semibold text-white mb-2">
@@ -140,13 +132,10 @@ export default function Home() {
       </section>
 
 
-
-      {/* Featured Projects */}
       <section className="p-6">
         <h2 className="text-3xl font-bold text-center mb-6">Featured Projects</h2>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-          {/* Project Card */}
           {[
             {
               title: "Prettier-er",
@@ -174,7 +163,6 @@ export default function Home() {
             },
           ].map((proj) => (
             <div key={proj.title} className="bg-gray-800 p-4 rounded-xl shadow hover:shadow-xl transition group flex flex-col items-start">
-              {/* Optional: Project image/logo */}
               {proj.img && (
                 <Image
                   src={proj.img}
@@ -202,7 +190,6 @@ export default function Home() {
           ))}
         </div>
         
-        {/* View All Projects CTA */}
         <div className="flex justify-center mt-8">
           <Link
             href="/projects"
@@ -216,7 +203,6 @@ export default function Home() {
 
 
 
-      {/*contact cta*/}
       <section className="bg-gray-900 p-6 text-center border-t border-gray-700">
         <h2 className="text-2xl font-bold mb-2">Want to chat?</h2>
         <a

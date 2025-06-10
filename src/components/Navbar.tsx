@@ -18,7 +18,6 @@ export default function Navbar() {
     { name: "Contact", path: "/contact" },
   ];
 
-  // Close mobile menu on outside click or Escape
   useEffect(() => {
     function handleClickOutside(e: MouseEvent) {
       if (isOpen && menuRef.current && !menuRef.current.contains(e.target as Node)) {
@@ -44,12 +43,10 @@ export default function Navbar() {
       aria-label="Main navigation"
     >
       <div className="container mx-auto flex justify-between items-center">
-        {/* Brand / Home link with icon */}
         <Link
           href="/"
           className="flex items-center gap-2 text-xl font-bold focus:outline-none focus:ring-2 focus:ring-purple-500 rounded"
         >
-          {/* Icon left of text */}
           <Image
             src="/favicon.ico"
             alt="JH Logo"
@@ -63,7 +60,6 @@ export default function Navbar() {
         </Link>
 
 
-        {/* Hamburger button */}
         <button
           onClick={() => setIsOpen(!isOpen)}
           aria-label="Toggle navigation menu"
@@ -74,7 +70,6 @@ export default function Navbar() {
           {isOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
         </button>
 
-        {/* Desktop menu */}
         <ul className="hidden md:flex space-x-4" role="menubar">
           {navItems.map((item) => (
             <li key={item.path} role="none">
@@ -95,7 +90,6 @@ export default function Navbar() {
         </ul>
       </div>
 
-      {/* Mobile menu (overlays content) */}
       {isOpen && (
         <ul
           id="mobile-menu"

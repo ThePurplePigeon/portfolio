@@ -21,14 +21,12 @@ export default function PrettierErShowcase() {
     >
       <section className="max-w-5xl mx-auto space-y-12">
 
-        {/* Hero */}
         <section
           className="
             relative flex flex-col items-center justify-center h-screen overflow-hidden
             bg-gradient-to-br from-[#181a37] via-[#332d7c] to-[#384af2]
           "
         >
-          {/* Hero Content */}
           <div className="relative z-10 text-center px-4 space-y-6">
             <motion.h1
               className="text-5xl md:text-6xl font-bold text-white"
@@ -57,7 +55,6 @@ export default function PrettierErShowcase() {
               Customize Prettier's formatter to match your style, and stay readable with a single click.
             </motion.p>
 
-            {/* Shield.io Badges */}
             <motion.div
               className="flex justify-center gap-2"
               initial={{ opacity: 0 }}
@@ -94,7 +91,6 @@ export default function PrettierErShowcase() {
               </a>
             </motion.div>
 
-            {/* CTA Buttons */}
             <motion.div
               className="flex flex-wrap justify-center gap-4 mt-4"
               initial={{ opacity: 0 }}
@@ -124,7 +120,6 @@ export default function PrettierErShowcase() {
             </motion.div>
           </div>
 
-          {/* Scroll Arrow */}
           <motion.div
             className="absolute bottom-6 md:bottom-10"
             initial={{ opacity: 0 }}
@@ -149,14 +144,12 @@ export default function PrettierErShowcase() {
           </motion.div>
         </section>
 
-        {/* Overview */}
         <section className="py-16 bg-gray-800 text-white">
           <div className="container mx-auto px-6">
             <h2 className="text-4xl font-bold text-center mb-12">Project Overview</h2>
 
             <div className="space-y-12">
 
-              {/* What is Prettier-er? */}
               <motion.div
                 className="bg-gray-700 p-8 rounded-lg shadow-lg border-l-4 border-blue-500 space-y-4"
                 initial={{ opacity: 0, y: 20 }}
@@ -164,7 +157,6 @@ export default function PrettierErShowcase() {
                 transition={{ duration: 0.6 }}
                 viewport={{ once: true }}
               >
-                {/* Icon + header */}
                 <div className="flex items-center mb-2 pb-2 border-b border-blue-500 group">
                   <FaInfoCircle
                     aria-hidden="true" focusable="false"
@@ -186,7 +178,6 @@ export default function PrettierErShowcase() {
 
 
 
-              {/* Motivation */}
               <motion.div
                 className="bg-gray-700 p-8 rounded-lg shadow-lg border-l-4 border-purple-500 space-y-4"
                 initial={{ opacity: 0, y: 20 }}
@@ -194,7 +185,6 @@ export default function PrettierErShowcase() {
                 transition={{ duration: 0.6 }}
                 viewport={{ once: true }}
               >
-                {/* Icon + header */}
                 <div className="flex items-center mb-2 pb-2 border-b border-purple-500 group">
                   <FaLightbulb
                     aria-hidden="true" focusable="false"
@@ -214,13 +204,11 @@ export default function PrettierErShowcase() {
 
 
 
-              {/* Development Journey Section */}
               <section id="development-journey" className="py-16">
                 <Timeline />
               </section>
 
 
-              {/* Project Impact Section */}
               <motion.div
                 className="bg-gray-700 p-8 rounded-lg shadow-lg"
                 initial={{ opacity: 0, y: 20 }}
@@ -238,7 +226,6 @@ export default function PrettierErShowcase() {
         </section>
 
 
-        {/* Visuals – before / Prettier / Prettier‑er */}
         <motion.section
           role="region"
           aria-label="Screenshot Gallery"
@@ -256,7 +243,6 @@ export default function PrettierErShowcase() {
             backdrop-blur
             ">Screenshots</h2>
 
-          {/* 1‑col on mobile, 3‑col on larger screens */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[
               { label: "Original (unformatted)", file: "test_unformatted.png", alt: "Screenshot: original unformatted JavaScript snippet" },
@@ -285,7 +271,6 @@ export default function PrettierErShowcase() {
           </div>
         </motion.section>
 
-        {/* --- Key Features (2‑up) --- */}
         <motion.section
           className="space-y-8"
           initial={{ opacity: 0, y: 20 }}
@@ -302,7 +287,6 @@ export default function PrettierErShowcase() {
             ">Key Features</h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {/* Personalized One‑Click Formatting */}
             <div className="bg-gray-700 p-6 rounded-lg shadow-lg space-y-3">
               <h3 className="text-xl font-semibold text-purple-200">
                 Personalized One-Click Formatting
@@ -313,7 +297,6 @@ export default function PrettierErShowcase() {
             </div>
 
 
-            {/* Readability Analysis */}
             <div className="bg-gray-700 p-6 rounded-lg shadow-lg space-y-3">
               <h3 className="text-xl font-semibold text-purple-200">
                 Real-Time Readability Analysis
@@ -327,7 +310,6 @@ export default function PrettierErShowcase() {
 
 
 
-        {/* Outcomes & Reflections – new version */}
         <motion.section
           className="space-y-8"
           initial={{ opacity: 0, y: 20 }}
@@ -343,10 +325,8 @@ export default function PrettierErShowcase() {
             backdrop-blur
             ">Outcomes & Reflections</h2>
 
-          {/* 2‑col grid on desktop, 1‑col on mobile */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
 
-            {/* —— Achievements —— */}
             <div className="bg-gray-700 p-6 rounded-lg shadow-lg space-y-4">
               <h3 className="text-xl font-semibold text-blue-300 border-b border-blue-500 pb-2">
                 What We Accomplished
@@ -367,7 +347,6 @@ export default function PrettierErShowcase() {
               </ul>
             </div>
 
-            {/* Lessons */}
             <div className="bg-gray-700 p-6 rounded-lg shadow-lg space-y-4">
               <h3 className="text-xl font-semibold text-purple-300 border-b border-purple-500 pb-2">
                 What We Learned
@@ -392,7 +371,6 @@ export default function PrettierErShowcase() {
         </motion.section>
 
 
-        {/* Call to Action */}
         <motion.section
           className="text-center"
           initial={{ opacity: 0, y: 20 }}

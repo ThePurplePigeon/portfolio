@@ -101,7 +101,6 @@ export default function DocsPage () {
                 How Formatting Works
               </h3>
 
-              {/* Chapter 1: Repositories & Their Roles */}
               <section id="repos-and-roles" className="mb-12">
                 <h4 className="text-2xl font-semibold text-gray-200 mb-4 border-b border-purple-400 pb-1">
                   1. Repositories & Their Roles
@@ -219,7 +218,6 @@ export default function DocsPage () {
                 </div>
               </section>
 
-              {/* Chapter 2: Formatting Pipeline */}
               <section id="formatting-pipeline">
                 <h4 className="text-2xl font-semibold text-gray-200 mb-4 border-b border-purple-400 pb-1">
                   2. Formatting Pipeline
@@ -273,7 +271,6 @@ export default function DocsPage () {
                   Prettier-er's primary goal is to give developers a simple way to make their code clean and uniquely their own. Below you'll find each formatting enhancement introduced by Prettier-er, with real examples of how they affect your code.
                 </p>
 
-                {/* Allman Style */}
                 <section id="allman-style" className="mb-12">
                   <h4 className="text-2xl font-semibold text-gray-200 mb-2 border-b border-purple-400 pb-1">
                     Allman Style
@@ -304,7 +301,6 @@ export default function DocsPage () {
                   </div>
                 </section>
 
-                {/* Force Object Literals */}
                 <section id="force-object-style" className="mb-12">
                   <h4 className="text-2xl font-semibold text-gray-200 mb-4 border-b border-purple-400 pb-1">
                     Force Object Literals to One or Multiple Lines
@@ -364,7 +360,6 @@ export default function DocsPage () {
                   </div>
                 </section>
 
-                {/* Matrix-style Arrays */}
                 <section id="matrix-arrays" className="mb-12">
                   <h4 className="text-2xl font-semibold text-gray-200 mb-4 border-b border-purple-400 pb-1">
                     Matrix-style Arrays
@@ -395,7 +390,6 @@ export default function DocsPage () {
                   </div>
                 </section>
 
-                {/* One-line Getters/Setters */}
                 <section id="one-line-getters-setters" className="mb-12">
                   <h4 className="text-2xl font-semibold text-gray-200 mb-4 border-b border-purple-400 pb-1">
                     One-line Getters &amp; Setters
@@ -426,7 +420,6 @@ export default function DocsPage () {
                   </div>
                 </section>
 
-                {/* New Line Else */}
                 <section id="newline-else" className="mb-12">
                   <h4 className="text-2xl font-semibold text-gray-200 mb-4 border-b border-purple-400 pb-1">
                     New Line Else Statement
@@ -457,7 +450,6 @@ export default function DocsPage () {
                   </div>
                 </section>
 
-                {/* Keep Multiple Blank Lines */}
                 <section id="keep-multiple-blank-lines" className="mb-12">
                   <h4 className="text-2xl font-semibold text-gray-200 mb-4 border-b border-purple-400 pb-1">
                     Keep Multiple Blank Lines (Block Padding)
@@ -488,7 +480,6 @@ export default function DocsPage () {
                   </div>
                 </section>
 
-                {/* Retain Blank Lines */}
                 <section id="retain-blank-lines" className="mb-12">
                   <h4 className="text-2xl font-semibold text-gray-200 mb-4 border-b border-purple-400 pb-1">
                     Retain Blank Lines (General Whitespace)
@@ -519,7 +510,6 @@ export default function DocsPage () {
                   </div>
                 </section>
 
-                {/* Same-Line Selectors */}
                 <section id="same-line-selectors" className="mb-12">
                   <h4 className="text-2xl font-semibold text-gray-200 mb-4 border-b border-purple-400 pb-1">
                     Same-Line Selectors (CSS)
@@ -620,7 +610,6 @@ export default function DocsPage () {
                 </p>
 
 
-                {/* Individual Options */}
                 <section id="line-length-threshold" className="mb-10">
                   <h4 className="text-2xl font-semibold text-gray-200 mb-2 border-b border-purple-400 pb-1 flex items-center">
                     Line Length Threshold <span className="text-sm text-gray-400 ml-4">(default: 40)</span>

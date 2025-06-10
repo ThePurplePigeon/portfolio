@@ -45,23 +45,21 @@ export default function About() {
 
     const timer = setInterval(() => {
       setCurrentCourse((prevIndex) => (prevIndex + 1) % courses.length);
-    }, 10000); // Auto-scroll every 10 seconds
+    }, 10000);
 
     return () => clearInterval(timer);
   }, [autoScroll, courses.length, currentCourse]);
 
   const handleManualChange = (newIndex: number) => {
     setCurrentCourse(newIndex);
-    setAutoScroll(false); // temporarily pause autoscroll
+    setAutoScroll(false);
 
-    // Restart auto-scroll after user interaction
-    setTimeout(() => setAutoScroll(true), 10000); // pauses for 10 seconds
+    setTimeout(() => setAutoScroll(true), 10000);
   };
 
   return (
     <main className="bg-gray-900 text-white min-h-screen p-6">
       <section className="max-w-4xl mx-auto space-y-8">
-        {/* Intro */}
         <section className="bg-gray-800 rounded-xl p-6 shadow-lg shadow-purple-700/20 relative overflow-hidden">
           <div className="relative z-10">
             <div className="flex items-center gap-4">
@@ -85,13 +83,11 @@ export default function About() {
           </div>
         </section>
 
-        {/* Education */}
         <section className="bg-gray-800 p-6 rounded-xl shadow-lg space-y-4 shadow-purple-700/20 relative overflow-hidden">
           <h2 className="text-3xl font-bold flex items-center">
             <FaUniversity className="text-blue-500 mr-3" /> Education
           </h2>
 
-          {/* Degree */}
           <motion.div
             initial="offscreen"
             whileInView="onscreen"
@@ -107,7 +103,6 @@ export default function About() {
             </div>
           </motion.div>
 
-          {/* Minor */}
           <motion.div
             initial="offscreen"
             whileInView="onscreen"
@@ -122,7 +117,6 @@ export default function About() {
             <p className="text-gray-300">Philosophy</p>
           </motion.div>
 
-          {/* Relevant Coursework Carousel */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -134,9 +128,7 @@ export default function About() {
               <FaLaptopCode className="mr-2 text-purple-400" /> Highlighted Coursework
             </h3>
 
-            {/* Carousel */}
             <div className="flex items-center justify-between gap-4">
-              {/* Previous */}
               <button
                 onClick={() => handleManualChange((currentCourse - 1 + courses.length) % courses.length)}
                 className="
@@ -156,7 +148,6 @@ export default function About() {
                 &#10094;
               </button>
 
-              {/* Course Content */}
               <div className="flex-1" aria-live="polite">
                 <motion.div
                   key={courses[currentCourse].title}
@@ -172,7 +163,6 @@ export default function About() {
                 </motion.div>
               </div>
 
-              {/* Next */}
               <button
                 onClick={() => handleManualChange((currentCourse + 1) % courses.length)}
                 className="
@@ -193,7 +183,6 @@ export default function About() {
               </button>
             </div>
 
-            {/* Pagination */}
             <div className="flex justify-center gap-2 mt-4">
               {courses.map((_, idx) => (
                 <button
@@ -209,16 +198,13 @@ export default function About() {
           </motion.div>
         </section>
 
-        {/* Technical Skills*/}
         <div className="bg-gray-800 p-6 rounded-xl shadow-lg shadow-purple-700/20 relative overflow-hidden">
           <h2 className="flex items-center text-3xl font-bold mb-4">
             <FaTools className="mr-2 text-blue-500" />
             Technical Skills
           </h2>
 
-          {/* Top row: three cards */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {/* Languages */}
             <div className="bg-gray-900 p-4 rounded-lg shadow-md">
               <h3 className="text-xl font-semibold text-purple-400 text-center mb-3">Languages</h3>
               <div className="flex flex-wrap justify-center gap-2">
@@ -233,7 +219,6 @@ export default function About() {
               </div>
             </div>
 
-            {/* Frameworks & Libs */}
             <div className="bg-gray-900 p-4 rounded-lg shadow-md">
               <h3 className="text-xl font-semibold text-purple-400 text-center mb-3">Frameworks & Libraries</h3>
               <div className="flex flex-wrap justify-center gap-2">
@@ -248,7 +233,6 @@ export default function About() {
               </div>
             </div>
 
-            {/* Tools */}
             <div className="bg-gray-900 p-4 rounded-lg shadow-md">
               <h3 className="text-xl font-semibold text-purple-400 text-center mb-3">Tools</h3>
               <div className="flex flex-wrap justify-center gap-2">
@@ -264,9 +248,7 @@ export default function About() {
             </div>
           </div>
 
-          {/* Bottom row: centered two cards */}
           <div className="mt-6 flex justify-center gap-6">
-            {/* Methodologies */}
             <div className="bg-gray-900 p-4 rounded-lg shadow-md">
               <h3 className="text-xl font-semibold text-purple-400 text-center mb-3">Methodologies</h3>
               <div className="flex flex-wrap justify-center gap-2">
@@ -281,7 +263,6 @@ export default function About() {
               </div>
             </div>
 
-            {/* Certifications */}
             <div className="bg-gray-900 p-4 rounded-lg shadow-md">
               <h3 className="text-xl font-semibold text-purple-400 text-center mb-3">Certifications</h3>
               <div className="flex justify-center">
@@ -298,7 +279,6 @@ export default function About() {
 
 
 
-        {/* Soft Skills*/}
         <div className="bg-gray-800 p-6 rounded-xl shadow-lg shadow-purple-700/20 relative overflow-hidden">
           <h2 className="flex items-center text-3xl font-bold mb-4">
             <FaUsers className="mr-2 text-blue-500" />
@@ -306,7 +286,6 @@ export default function About() {
           </h2>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            {/* Teamwork & Collaboration */}
             <div className="bg-gray-900 p-4 rounded-lg shadow-md">
               <h3 className="text-xl font-semibold text-purple-400 text-center mb-3">Teamwork & Collaboration</h3>
               <p className="text-gray-300 text-sm text-center">
@@ -314,7 +293,6 @@ export default function About() {
               </p>
             </div>
 
-            {/* Problem-Solving */}
             <div className="bg-gray-900 p-4 rounded-lg shadow-md">
               <h3 className="text-xl font-semibold text-purple-400 text-center mb-3">Problem-Solving</h3>
               <p className="text-gray-300 text-sm text-center">
@@ -322,7 +300,6 @@ export default function About() {
               </p>
             </div>
 
-            {/* Leadership */}
             <div className="bg-gray-900 p-4 rounded-lg shadow-md">
               <h3 className="text-xl font-semibold text-purple-400 text-center mb-3">Leadership</h3>
               <p className="text-gray-300 text-sm text-center">
@@ -332,7 +309,6 @@ export default function About() {
           </div>
         </div>
 
-        {/* Call to Action*/}
         <div className="bg-gray-800 rounded-xl p-6 shadow-lg shadow-purple-500/20 text-center">
           <h2 className="text-2xl font-bold text-white mb-3">Interested in collaborating?</h2>
           <p className="text-gray-300 mb-4">I'd love to hear from you. Let's build something great together!</p>

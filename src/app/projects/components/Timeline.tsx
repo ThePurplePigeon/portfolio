@@ -3,7 +3,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
-/* timeline entries */
 const journey = [
   {
     title: "Origin",
@@ -68,9 +67,7 @@ export default function Timeline() {
         Development Journey
       </h3>
 
-      {/* ⅓ / ⅔ layout */}
       <div className="flex flex-col md:flex-row md:items-center">
-        {/* left column (timeline) */}
         <div className="md:w-2/5 relative pr-2 mb-8 md:mb-0">
           <span className="hidden md:block absolute left-3 top-0 h-full w-[2px] bg-purple-500/40" />
 
@@ -89,7 +86,6 @@ export default function Timeline() {
                   className="group cursor-pointer select-none flex items-start"
                   onClick={() => setActive(idx)}
                 >
-                  {/* dot */}
                   <span
                     className={`mt-1.5 mr-3 h-4 w-4 rounded-full transition-all ${
                       isActive
@@ -98,7 +94,6 @@ export default function Timeline() {
                     }`}
                   />
 
-                  {/* label */}
                   <h4
                     className={`font-semibold transition-all ${
                       isActive
@@ -114,7 +109,6 @@ export default function Timeline() {
           </ul>
         </div>
 
-        {/* right column (details) */}
         <div className="md:w-3/5 mt-6 md:mt-0">
           <AnimatePresence mode="wait">
             <motion.div

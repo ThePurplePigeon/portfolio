@@ -17,7 +17,6 @@ export default function TaskerShowcase() {
       }}
     >
       <section className="max-w-5xl mx-auto space-y-12">
-        {/* Header */}
         <section className="bg-gray-800/95 rounded-lg px-6 py-10 shadow-lg">
           <motion.div
             initial={{ opacity: 0, y: 25 }}
@@ -25,7 +24,6 @@ export default function TaskerShowcase() {
             transition={{ duration: 0.5 }}
             className="max-w-5xl mx-auto flex flex-col md:flex-row md:items-center gap-8"
           >
-            {/* Title + tagline */}
             <div className="flex-1 text-center md:text-left space-y-3">
               <h1 className="text-4xl md:text-5xl font-bold text-white">
                 Tasker
@@ -35,7 +33,6 @@ export default function TaskerShowcase() {
               </p>
             </div>
 
-            {/* Optional visual (hidden on small screens) */}
             <div className="hidden md:block flex-shrink-0">
               <Image
                 src="/tasker/main_screen.png"   // replace with actual screenshot later
@@ -49,7 +46,6 @@ export default function TaskerShowcase() {
           </motion.div>
         </section>
 
-        {/* ——— Project Overview ——— */}
         <section className="py-16 bg-gray-800 text-white">
           <div className="container mx-auto px-6">
             <h2 className="text-4xl font-bold text-center mb-12">Project Overview</h2>
@@ -61,7 +57,6 @@ export default function TaskerShowcase() {
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
             >
-              {/* What is Tasker? */}
               <div className="bg-gray-700 p-8 rounded-lg shadow-lg border-l-4 border-blue-500 space-y-4">
                 <div className="flex items-center mb-2 pb-2 border-b border-blue-500 group">
                   <FaTasks
@@ -80,7 +75,6 @@ export default function TaskerShowcase() {
 
               </div>
 
-              {/* My Role */}
               <div className="bg-gray-700 p-8 rounded-lg shadow-lg border-l-4 border-purple-500 space-y-4">
                 <div className="flex items-center mb-2 pb-2 border-b border-purple-500 group">
                   <FaCode
@@ -107,7 +101,6 @@ export default function TaskerShowcase() {
         </section>
 
 
-        {/* Functionality Highlights */}
         <motion.section
           className="space-y-8"
           initial={{ opacity: 0, y: 20 }}
@@ -126,7 +119,6 @@ export default function TaskerShowcase() {
           </h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {/* Import & Filter */}
             <div className="space-y-4">
               <div className="flex items-start gap-3">
                 <FaCalendarAlt className="text-purple-400 text-2xl mt-1" />
@@ -145,7 +137,6 @@ export default function TaskerShowcase() {
               </p>
             </div>
 
-            {/* Prioritize & Tag */}
             <div className="space-y-4">
               <div className="flex items-start gap-3">
                 <FaClipboardList className="text-purple-400 text-2xl mt-1" />
@@ -164,7 +155,6 @@ export default function TaskerShowcase() {
               </p>
             </div>
 
-            {/* Save & Sync (spans full width on desktop) */}
             <div className="md:col-span-2 space-y-4">
               <div className="flex items-start gap-3">
                 <FaCode className="text-purple-400 text-2xl mt-1" />
@@ -180,7 +170,6 @@ export default function TaskerShowcase() {
           </div>
         </motion.section>
 
-        {/* Tech Stack & Tooling */}
         <motion.section
           className="py-16 bg-gray-800 text-white rounded-lg shadow-lg"
           initial={{ opacity: 0, y: 20 }}
@@ -229,7 +218,6 @@ export default function TaskerShowcase() {
           </div>
         </motion.section>
 
-        {/* Screenshots */}
         <motion.section
           role="region"
           aria-label="Screenshot Gallery"
@@ -278,7 +266,6 @@ export default function TaskerShowcase() {
           </div>
         </motion.section>
 
-        {/* Challenges & Lessons Learned */}
         <motion.section
           className="bg-gray-800 p-8 rounded-lg shadow-lg"
           initial={{ opacity: 0, y: 20 }}
