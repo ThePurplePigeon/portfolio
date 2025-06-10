@@ -1,36 +1,41 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
-
 function isValidEmail(email: string) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
 
 export async function POST(req: Request): Promise<Response> {
+
+  const apiKey = process.env.RESEND_API_KEY;
+
+  if (!apiKey) {
+    return NextResponse.json(
+      { error: "Email service not configured. Please try again later." },
+      { status: 500 }
+    );
+  }
+
+  const resend = new Resend(apiKey);
+
   try {
     const { name = "", email = "", message = "", website = "" } = await req.json();
 
-    if (website) {
-      return NextResponse.json({ success: true });
-    }
+    if (website) return NextResponse.json({ success: true });
 
     const cleanedName = String(name).trim();
     const cleanedEmail = String(email).trim();
     const cleanedMessage = String(message).trim();
-
     if (
       cleanedName.length > 100 ||
       cleanedEmail.length > 320 ||
       cleanedMessage.length > 2000
     ) {
-      return NextResponse.json({ error: "Field too long." }, { status:400 });
+      return NextResponse.json({ error: "Field too long." }, { status: 400 });
     }
-
     if (!cleanedEmail || !isValidEmail(cleanedEmail) || !cleanedMessage) {
       return NextResponse.json({ error: "Missing or invalid fields." }, { status: 400 });
     }
-
     const cleanName = cleanedName.replace(/[\r\n]+/g, " ");
     const cleanEmail = cleanedEmail.replace(/[\r\n]+/g, "");
     const cleanMessage = cleanedMessage.replace(/<[^>]*>?/gm, "");
