@@ -542,10 +542,6 @@ export default function DocsPage () {
               </div>
             </motion.div>
           </section>
-
-
-
-
         </section>
 
         <section id="analysis-additions" className="space-y-16">
@@ -556,9 +552,6 @@ export default function DocsPage () {
             <p className="text-gray-400 text-lg">
               In addition to formatting, Prettier-er offers a research-backed readability analysis tool. It scans your code for subtle patterns—like long lines, dense nesting, or poor spacing—that can quietly reduce clarity. The following sections explain how the analysis works and how to interpret its results.
             </p>
-
-
-
           </div>
 
           <section id="readability-how" className="mb-12">
@@ -570,7 +563,6 @@ export default function DocsPage () {
                 <p>
                   The analysis is performed entirely within the VS Code extension, without ever invoking the Prettier core. When run, it processes your code line by line, using structural metrics from the literature to highlight patterns that might increase cognitive overhead—not to enforce arbitrary rules, but to help you write clearer, more maintainable code.
                 </p>
-
 
                 <p>
                   The process begins when VS Code passes the document to the analysis tool via a command, just as it does for formatting. The tool reads the document line by line, constructing lightweight objects for each line that record its type and any relevant metrics.
@@ -802,12 +794,7 @@ export default function DocsPage () {
 
                   <div className="text-gray-400 space-y-4">
                     <p>
-                      This is the only metric that does <em>not</em> rely on file-wide
-                      averages. Instead, it checks each <strong>declared</strong> identifier on the
-                      current line and asks a simple question: “Is this name <em>shorter
-                      than</em> the threshold?”&nbsp; The default threshold is&nbsp;<code>2</code>,
-                      so only single-letter declarations (<code className="text-green-400">i</code>,
-                      <code className="text-green-400">j</code>, <code className="text-green-400">x</code>, …) trigger a flag.
+                      This is the only metric that does <em>not</em> rely on file-wide averages. Instead, it checks each <strong>declared</strong> identifier on the current line and asks a simple question: “Is this name <em>shorter than</em> the threshold?”&nbsp; The default threshold is&nbsp;<code>2</code>, so only single-letter declarations (<code className="text-green-400">i</code>, <code className="text-green-400">j</code>, <code className="text-green-400">x</code>, …) trigger a flag.
                     </p>
 
                     <p>
@@ -815,16 +802,11 @@ export default function DocsPage () {
                     </p>
 
                     <p>
-                      Short loop counters are sometimes fine, but overusing
-                      microscopic names outside tight loops can hurt readability.
-                      Treat each flag as a nudge to choose something more descriptive
-                      (or lower the threshold if your team is happy with terse names).
+                      Short loop counters are sometimes fine, but overusing microscopic names outside tight loops can hurt readability. Treat each flag as a nudge to choose something more descriptive (or lower the threshold if your team is happy with terse names).
                     </p>
 
                     <p>
-                      Note that only <strong>declarations</strong> are used to decide whether a
-                      line is flagged; merely&nbsp;<em>using</em>&nbsp;a short variable won't trip the
-                      check unless that variable is also declared on the same line. 
+                      Note that only <strong>declarations</strong> are used to decide whether a line is flagged; merely <em>using</em> a short variable won't trip the check unless that variable is also declared on the same line.
                     </p>
                   </div>
                 </section>

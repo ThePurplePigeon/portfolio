@@ -352,19 +352,9 @@ export default function PrettierErShowcase() {
                 What We Learned
               </h3>
               <ul className="list-disc ml-5 space-y-2 text-gray-300 leading-relaxed">
-                <li>
-                  Deep dive into <strong>Prettier's AST printer</strong> taught us
-                  that even “opinionated” tools can stay flexible with the right
-                  hooks.
-                </li>
-                <li>
-                  Publishing to the marketplace highlighted the value of
-                  <strong> CI/CD & signed VSIX</strong> pipelines.
-                </li>
-                <li>
-                  Agile ceremonies (two-week sprints, peer reviews) kept
-                  5 developers and a mentor in sync & cut merge conflicts to near-zero.
-                </li>
+                <li>Deep dive into <strong>Prettier's AST printer</strong> taught us that even “opinionated” tools can stay flexible with the right hooks.</li>
+                <li>Publishing to the marketplace highlighted the value of <strong>CI/CD & signed VSIX</strong> pipelines.</li>
+                <li>Agile ceremonies (two-week sprints, peer reviews) kept 5 developers and a mentor in sync & cut merge conflicts to near-zero.</li>
               </ul>
             </div>
           </div>

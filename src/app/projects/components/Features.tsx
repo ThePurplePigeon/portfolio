@@ -51,7 +51,7 @@ export default function ProjectImpact() {
       transition={{ duration: 0.6 }}
     >
       <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-        
+
         <section aria-labelledby="toggles-heading">
           <div className="bg-gray-800/60 rounded-lg p-4">
             <header className="flex items-center mb-3">
