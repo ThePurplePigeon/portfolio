@@ -7,6 +7,7 @@ export default function Contact() {
   const[name, setName] = useState("");
   const[email, setEmail] = useState("");
   const[message, setMessage] = useState("");
+  const[website, setWebsite] = useState("");
 
   //state for error msg
   const [errors, setErrors] = useState<{ name?: string; email?: string; message?: string }>({});
@@ -16,8 +17,13 @@ export default function Contact() {
   //state for loading
   const [isLoading, setIsLoading] = useState(false);
 
-  const validateEmail = (email: string) => {
-    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  const validateEmail = (email: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+
+  const cleaned = {
+    name: name.trim(),
+    email: email.trim(),
+    message: message.trim(),
+    website: website.trim(),
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -25,35 +31,46 @@ export default function Contact() {
     setSuccess("");
     const newErrors: { name?: string; email?: string; message?: string } = {};
 
-    if (!name.trim()) {
-      newErrors.name = "Name is required.";
-    }
-    if (!email.trim()) {
+    // **Always use cleaned values**
+    if (!cleaned.name) newErrors.name = "Name is required.";
+    if (!cleaned.email) {
       newErrors.email = "Email is required.";
-    } else if (!validateEmail(email)) {
+    } else if (!validateEmail(cleaned.email)) {
       newErrors.email = "Please enter a valid email address.";
     }
-    if (!message.trim()){
-      newErrors.message = "Message is required.";
-    }
+    if (!cleaned.message) newErrors.message = "Message is required.";
 
     setErrors(newErrors);
 
-    //if no error obj, form is good to go
-    if (Object.keys(newErrors).length === 0) {
-      setIsLoading(true);
-      await new Promise((resolve) => setTimeout(resolve, 1000)); //simulating api call
+    // **Do not proceed if errors exist!**
+    if (Object.keys(newErrors).length > 0) return;
 
-      //placeholder until api hook is set up
-      setSuccess("Thank you for your message! I'll get back to you soon.");
+    setIsLoading(true);
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(cleaned),
+      });
 
-      //clear form
-      setName("");
-      setEmail("");
-      setMessage("");
-      setIsLoading(false);
+      if (res.ok) {
+        setSuccess("Thank you for your message! I'll get back to you soon.");
+        setName("");
+        setEmail("");
+        setMessage("");
+        setErrors({});
+      } else {
+        const data = await res.json();
+        setErrors({ message: data.error || "Failed to send message." });
+      }
+    } catch (err) {
+      console.error("Error sending contact form:", err);
+      setErrors({ message: "Network error. Please try again later." });
     }
+    setIsLoading(false);
   };
+
+
   return (
     <main className="flex min-h-screen items-center justify-center bg-gray-900 text-white p-4">
       <div className="max-w-md w-full">
@@ -63,6 +80,7 @@ export default function Contact() {
         </p>
         {success && <p className="mb-4 text-green-500 text-center">{success}</p>}
         <form className="space-y-4" onSubmit={handleSubmit}>
+          <input aria-hidden="true" type="text" name="website" style={{ display: "none" }} tabIndex={-1} autoComplete="off" value={website} onChange={e => setWebsite(e.target.value)}/>
           <div>
             <label htmlFor="name" className="block text-sm font-medium text-gray-300">
               Name
