@@ -9,7 +9,6 @@ export default function Footer() {
         © {new Date().getFullYear()} Joshua Hughes. All rights reserved.
       </p>
 
-      {/* Socials */}
       <div className="flex justify-center gap-6 mt-3 mb-1">
         <a
           href="https://github.com/ThePurplePigeon"
@@ -38,7 +37,6 @@ export default function Footer() {
         </a>
       </div>
 
-      {/* Nav Links */}
       <div className="mt-3 flex justify-center flex-wrap gap-x-2 text-sm">
         <Link href="/" className="hover:text-purple-400 transition">Home</Link>
         <span className="text-gray-500">|</span>
@@ -49,7 +47,6 @@ export default function Footer() {
         <Link href="/contact" className="hover:text-purple-400 transition">Contact</Link>
       </div>
 
-      {/* Quote */}
       <p className="mt-3 text-sm text-gray-400 italic max-w-xl mx-auto">
         "The most important step a man can take. It's not the first one, is it? It's the next one." – Brandon Sanderson
       </p>

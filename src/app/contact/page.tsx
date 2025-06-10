@@ -3,18 +3,14 @@ import { useState } from "react";
 import { FaSpinner } from "react-icons/fa";
 
 export default function Contact() {
-  //state for form values
   const[name, setName] = useState("");
   const[email, setEmail] = useState("");
   const[message, setMessage] = useState("");
   const[website, setWebsite] = useState("");
 
-  //state for error msg
   const [errors, setErrors] = useState<{ name?: string; email?: string; message?: string }>({});
 
-  //and the state for success feedback
   const [success, setSuccess] = useState("");
-  //state for loading
   const [isLoading, setIsLoading] = useState(false);
 
   const validateEmail = (email: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
@@ -31,7 +27,6 @@ export default function Contact() {
     setSuccess("");
     const newErrors: { name?: string; email?: string; message?: string } = {};
 
-    // **Always use cleaned values**
     if (!cleaned.name) newErrors.name = "Name is required.";
     if (!cleaned.email) {
       newErrors.email = "Email is required.";
@@ -42,7 +37,6 @@ export default function Contact() {
 
     setErrors(newErrors);
 
-    // **Do not proceed if errors exist!**
     if (Object.keys(newErrors).length > 0) return;
 
     setIsLoading(true);
@@ -63,8 +57,7 @@ export default function Contact() {
         const data = await res.json();
         setErrors({ message: data.error || "Failed to send message." });
       }
-    } catch (err) {
-      console.error("Error sending contact form:", err);
+    } catch {
       setErrors({ message: "Network error. Please try again later." });
     }
     setIsLoading(false);

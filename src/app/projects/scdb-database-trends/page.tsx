@@ -18,7 +18,6 @@ export default function ScdbShowcase() {
       className="bg-gray-900 text-white min-h-screen p-8"
     >
       <section className="max-w-5xl mx-auto space-y-12">
-        {/* Intro */}
         <motion.section
           className="bg-gray-800/95 rounded-lg px-6 py-8 shadow-lg flex items-center gap-6"
           initial={false}
@@ -44,7 +43,6 @@ export default function ScdbShowcase() {
           />
         </motion.section>
 
-        {/* Description */}
         <section className="py-14 bg-gray-800 rounded-lg shadow-lg">
           <div className="px-6 space-y-6">
             <div className="flex items-center gap-3 border-b border-blue-500 pb-2">
@@ -79,7 +77,6 @@ export default function ScdbShowcase() {
           </div>
         </section>
 
-        {/* My Role */}
         <motion.section
           className="bg-gray-700 p-8 rounded-lg shadow-lg border-l-4 border-purple-500"
           initial={false}
@@ -135,7 +132,6 @@ export default function ScdbShowcase() {
 
         </motion.section>
 
-        {/* Accomplishments */}
         <motion.section
           className="space-y-10"
           initial={false}
@@ -146,7 +142,6 @@ export default function ScdbShowcase() {
             Core Accomplishments
           </h2>
 
-          {/* Python */}
           <div className="flex items-start gap-5">
             <span className="flex-shrink-0 h-12 w-12 rounded-full bg-purple-700/30 flex items-center justify-center">
               <FaDatabase className="text-purple-300 text-2xl" />
@@ -175,7 +170,6 @@ export default function ScdbShowcase() {
             </div>
           </div>
 
-          {/* Queries */}
           <div className="flex items-start gap-5">
             <span className="flex-shrink-0 h-12 w-12 rounded-full bg-purple-700/30 flex items-center justify-center">
               <FaChartLine className="text-purple-300 text-2xl" />
@@ -199,7 +193,6 @@ export default function ScdbShowcase() {
         </motion.section>
 
 
-        {/* Tough spots */}
         <motion.section
           className="bg-gray-800 p-8 rounded-lg shadow-lg"
           initial={false}
@@ -228,7 +221,6 @@ export default function ScdbShowcase() {
           </div>
         </motion.section>
 
-        {/* Link to source */}
         <motion.section
           className="text-center"
           initial={false}

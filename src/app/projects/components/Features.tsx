@@ -24,7 +24,6 @@ const metrics = [
   "Identifier-length check",
 ];
 
-// pill utility
 const Pill = ({ text }: { text: string }) => (
   <span
     className="
@@ -35,7 +34,7 @@ const Pill = ({ text }: { text: string }) => (
       hover:bg-purple-600 hover:text-white
       focus-visible:outline-none focus-visible:ring focus-visible:ring-purple-500
       transition
-      md:flex-1 md:basis-[48%]     /* 2‑up on desktop, fluid on mobile */
+      md:flex-1 md:basis-[48%]
     "
   >
     {text}
@@ -51,9 +50,8 @@ export default function ProjectImpact() {
       viewport={{ once: true }}
       transition={{ duration: 0.6 }}
     >
-      {/* 2 column layout (stacks on mobile) */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-        {/* Custom Toggles */}
+        
         <section aria-labelledby="toggles-heading">
           <div className="bg-gray-800/60 rounded-lg p-4">
             <header className="flex items-center mb-3">
@@ -80,7 +78,6 @@ export default function ProjectImpact() {
           </div>
         </section>
 
-        {/* Readability Metrics */}
         <section aria-labelledby="metrics-heading">
           <div className="bg-gray-800/60 rounded-lg p-4">
             <header className="flex items-center mb-3">
