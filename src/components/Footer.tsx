@@ -30,8 +30,8 @@ export default function Footer() {
           <FaLinkedin className="text-3xl text-white group-hover:text-purple-400 transition-all duration-150 drop-shadow" />
         </a>
         <a
-          href="mailto:joshua@hughesonthenet.com"
-          aria-label="Email"
+          href="/contact"
+          aria-label="Contact"
           className="group"
         >
           <FaEnvelope className="text-3xl text-white group-hover:text-purple-400 transition-all duration-150 drop-shadow" />
