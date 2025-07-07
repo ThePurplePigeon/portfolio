@@ -17,6 +17,13 @@ This repository contains the source code for my personal portfolio site. It is b
    ```
 3. Visit [http://localhost:3000](http://localhost:3000) to view the site.
 
+## Testing
+
+To run the testing suite, run:
+   ```bash
+   npm test
+   ```
+
 ## Features
 
 - Dynamic React pages written in TypeScript
