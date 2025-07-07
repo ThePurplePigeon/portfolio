@@ -107,4 +107,51 @@ describe('Contact API Route', () => {
     expect(res.status).toBe(500);
     expect(body.error).toBe('Failed to send email.');
   });
+
+  it('sanitizes input fields before sending', async () => {
+    sendMock.mockResolvedValueOnce({ id: 'sanitized-1' });
+    const req = {
+      json: async () => ({
+        name: 'Alice\nBob',
+        email: 'alice@example.com\n',
+        message: '<b>Hello</b>',
+        website: ''
+      })
+    } as any;
+    const res = await POST(req);
+    const body = await res.json();
+    expect(res.status).toBe(200);
+    expect(body).toEqual({ success: true });
+    expect(sendMock).toHaveBeenCalledTimes(1);
+    const args = sendMock.mock.calls[0][0];
+    expect(args.subject).toContain('Alice\nBob');
+    expect(args.replyTo).toBe('alice@example.com');
+    expect(args.text).toContain('Hello');
+    expect(args.text).not.toMatch(/<[^>]*>/);
+  });
+
+  it('uses "Anonymous" in subject when name is blank', async () => {
+    sendMock.mockResolvedValueOnce({ id: 'anon-1' });
+    const req = { json: async () => ({ name: '', email: 'anon@example.com', message: 'Hi', website: '' }) } as any;
+    const res = await POST(req);
+    const body = await res.json();
+    expect(res.status).toBe(200);
+    expect(body).toEqual({ success: true });
+    const args = sendMock.mock.calls[0][0];
+    expect(args.subject).toMatch(/Anonymous/);
+    expect(args.replyTo).toBe('anon@example.com');
+  });
+
+  it('trims whitespace around inputs', async () => {
+    sendMock.mockResolvedValueOnce({ id: 'trim-1' });
+    const req = { json: async () => ({ name: '  Bob  ', email: '  bob@example.com  ', message: '  Hi  ', website: '' }) } as any;
+    const res = await POST(req);
+    const body = await res.json();
+    expect(res.status).toBe(200);
+    expect(body).toEqual({ success: true });
+    const args = sendMock.mock.calls[0][0];
+    expect(args.subject).toContain('Bob');
+    expect(args.replyTo).toBe('bob@example.com');
+    expect(args.text).toContain('Hi');
+  });
 });

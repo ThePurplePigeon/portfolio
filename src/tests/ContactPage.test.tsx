@@ -92,14 +92,52 @@ test('displays server error message if API returns an error', async () => {
 });
 
 test('displays network error message on fetch exception', async () => {
-  (global.fetch as jest.Mock).mockRejectedValueOnce(new Error('Network error'));
-  render(<Contact />);
-  //valid inputs
-  await userEvent.type(screen.getByLabelText(/Name/i), 'Carol');
-  await userEvent.type(screen.getByLabelText(/Email/i), 'carol@example.com');
-  await userEvent.type(screen.getByLabelText(/Message/i), 'Hey there');
-  await userEvent.click(screen.getByRole('button', { name: /send message/i }));
-  //catch fetch error, show network error message
-  const netErrorMsg = await screen.findByText(/Network error\. Please try again later\./i);
-  expect(netErrorMsg).toBeInTheDocument();
+    (global.fetch as jest.Mock).mockRejectedValueOnce(new Error('Network error'));
+    render(<Contact />);
+    //valid inputs
+    await userEvent.type(screen.getByLabelText(/Name/i), 'Carol');
+    await userEvent.type(screen.getByLabelText(/Email/i), 'carol@example.com');
+    await userEvent.type(screen.getByLabelText(/Message/i), 'Hey there');
+    await userEvent.click(screen.getByRole('button', { name: /send message/i }));
+    //catch fetch error, show network error message
+    const netErrorMsg = await screen.findByText(/Network error\. Please try again later\./i);
+    expect(netErrorMsg).toBeInTheDocument();
+});
+
+test('honeypot website field is hidden from users', () => {
+    render(<Contact />);
+    const websiteInput = document.querySelector('input[name="website"]') as HTMLInputElement;
+    expect(websiteInput).not.toBeVisible();
+});
+
+test('shows loading indicator while submitting', async () => {
+    let resolveFetch: any;
+    (global.fetch as jest.Mock).mockImplementationOnce(() => new Promise(res => { resolveFetch = () => res({ ok: true, json: async () => ({ success: true }) }); }));
+
+    render(<Contact />);
+    await userEvent.type(screen.getByLabelText(/Name/i), 'Dan');
+    await userEvent.type(screen.getByLabelText(/Email/i), 'dan@example.com');
+    await userEvent.type(screen.getByLabelText(/Message/i), 'Loading test');
+    const button = screen.getByRole('button', { name: /send message/i });
+    await userEvent.click(button);
+    expect(button).toBeDisabled();
+    expect(button).toHaveTextContent(/sending/i);
+    resolveFetch();
+    const success = await screen.findByText(/Thank you for your message/i);
+    expect(success).toBeInTheDocument();
+});
+
+test('clears previous errors after successful submit', async () => {
+    render(<Contact />);
+    const button = screen.getByRole('button', { name: /send message/i });
+    await userEvent.click(button);
+    expect(screen.getByText(/Name is required\./i)).toBeInTheDocument();
+    (global.fetch as jest.Mock).mockResolvedValueOnce({ ok: true, json: async () => ({ success: true }) });
+    await userEvent.type(screen.getByLabelText(/Name/i), 'Eva');
+    await userEvent.type(screen.getByLabelText(/Email/i), 'eva@example.com');
+    await userEvent.type(screen.getByLabelText(/Message/i), 'Hi');
+    await userEvent.click(button);
+    const success = await screen.findByText(/Thank you for your message/i);
+    expect(success).toBeInTheDocument();
+    expect(screen.queryByText(/Name is required\./i)).not.toBeInTheDocument();
 });
