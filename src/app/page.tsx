@@ -86,8 +86,9 @@ export default function Home() {
             Currently Focusing On
           </h3>
           <p className="text-gray-200">
-            Learning React and deploying my first portfolio site.<br />
-            Next up: CompTIA A+ certification; studying starts July!
+            Studying for my CompTIA A+ certification, and looking<br />
+            for full-time IT and software engineering positions. <br />
+            Working on a mobile formatting pass for this website.
           </p>
         </div>
       </section>
