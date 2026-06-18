@@ -267,7 +267,7 @@ export default function About() {
               <h3 className="text-xl font-semibold text-purple-400 text-center mb-3">Certifications</h3>
               <div className="flex justify-center">
                 <span className="bg-gray-700 px-3 py-1 rounded text-sm text-gray-300">
-                  CompTIA A+ (in progress, est. Sept 2025)
+                  CompTIA A+ (in progress, est. June 2026)
                 </span>
               </div>
             </div>
