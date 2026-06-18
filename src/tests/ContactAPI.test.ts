@@ -124,10 +124,44 @@ describe('Contact API Route', () => {
     expect(body).toEqual({ success: true });
     expect(sendMock).toHaveBeenCalledTimes(1);
     const args = sendMock.mock.calls[0][0];
-    expect(args.subject).toContain('Alice\nBob');
+    expect(args.subject).toContain('Alice Bob');
+    expect(args.subject).not.toMatch(/[\r\n]/);
     expect(args.replyTo).toBe('alice@example.com');
     expect(args.text).toContain('Hello');
     expect(args.text).not.toMatch(/<[^>]*>/);
+  });
+
+  it('returns 400 for invalid JSON', async () => {
+    const req = { json: async () => { throw new Error('bad json'); } } as any;
+    const res = await POST(req);
+    const body = await res.json();
+    expect(res.status).toBe(400);
+    expect(body.error).toBe('Invalid JSON.');
+    expect(sendMock).not.toHaveBeenCalled();
+  });
+
+  it('returns 415 for non-json content types', async () => {
+    const req = {
+      headers: new Headers({ 'content-type': 'text/plain' }),
+      json: async () => ({ name: 'Alice', email: 'alice@example.com', message: 'Hello' })
+    } as any;
+    const res = await POST(req);
+    const body = await res.json();
+    expect(res.status).toBe(415);
+    expect(body.error).toBe('Unsupported content type.');
+    expect(sendMock).not.toHaveBeenCalled();
+  });
+
+  it('returns 413 for oversized requests', async () => {
+    const req = {
+      headers: new Headers({ 'content-length': '4097', 'content-type': 'application/json' }),
+      json: async () => ({ name: 'Alice', email: 'alice@example.com', message: 'Hello' })
+    } as any;
+    const res = await POST(req);
+    const body = await res.json();
+    expect(res.status).toBe(413);
+    expect(body.error).toBe('Request too large.');
+    expect(sendMock).not.toHaveBeenCalled();
   });
 
   it('uses "Anonymous" in subject when name is blank', async () => {
