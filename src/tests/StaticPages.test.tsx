@@ -71,3 +71,32 @@ describe('Static pages render', () => {
         });
     });
 });
+
+describe('Certification content', () => {
+    test('homepage renders the CompTIA A+ ce badge', () => {
+        render(<Home />);
+
+        expect(screen.getAllByText(/CompTIA A\+ ce certified/i)).toHaveLength(2);
+        expect(screen.getByText(/Issued June 25, 2026 \| Valid through June 25, 2029/i)).toBeInTheDocument();
+        expect(screen.getByAltText(/CompTIA A\+ ce certification logo/i)).toHaveAttribute(
+            'src',
+            expect.stringContaining('comptia-a-plus.png')
+        );
+    });
+
+    test('about page renders full certification details', () => {
+        render(<About />);
+
+        expect(screen.getByRole('heading', { name: /professional certification/i })).toBeInTheDocument();
+        expect(screen.getByText(/CompTIA A\+ ce Certification/i)).toBeInTheDocument();
+        expect(screen.getByText('June 25, 2026')).toBeInTheDocument();
+        expect(screen.getByText('June 25, 2029')).toBeInTheDocument();
+        expect(screen.getByText(/220-1201 and 220-1202/i)).toBeInTheDocument();
+        expect(screen.getByText('COMP001023018439')).toBeInTheDocument();
+        expect(screen.getByText('afad4807cf364e85976d4b301882acdc')).toBeInTheDocument();
+        expect(screen.getByRole('link', { name: /verify credential/i })).toHaveAttribute(
+            'href',
+            'https://cp.certmetrics.com/CompTIA/en/public/verify/credential/afad4807cf364e85976d4b301882acdc'
+        );
+    });
+});

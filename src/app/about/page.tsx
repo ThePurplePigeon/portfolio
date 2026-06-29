@@ -2,7 +2,7 @@
 
 import { 
   FaTools, FaUsers, FaUniversity, 
-  FaGraduationCap, FaBookReader, FaLaptopCode 
+  FaGraduationCap, FaBookReader, FaLaptopCode, FaCertificate, FaExternalLinkAlt
 } from "react-icons/fa";
 import Image from "next/image";
 import { motion } from "framer-motion";
@@ -198,6 +198,79 @@ export default function About() {
           </motion.div>
         </section>
 
+        <section className="bg-gray-800 p-6 rounded-xl shadow-lg space-y-4 shadow-purple-700/20 relative overflow-hidden">
+          <h2 className="text-3xl font-bold flex items-center">
+            <FaCertificate className="text-blue-500 mr-3" /> Professional Certification
+          </h2>
+
+          <motion.div
+            initial="offscreen"
+            whileInView="onscreen"
+            viewport={{ once: true }}
+            variants={cardVariants}
+            className="grid grid-cols-1 gap-6 bg-gray-900 p-5 rounded-lg shadow-md md:grid-cols-[auto,1fr]"
+          >
+            <div className="mx-auto flex h-36 w-36 items-center justify-center rounded-lg bg-[#f4f4f4] p-4 shadow-inner md:mx-0">
+              <Image
+                src="/certifications/comptia-a-plus.png"
+                alt="CompTIA A+ ce certification logo"
+                width={120}
+                height={120}
+                className="h-full w-full object-contain"
+              />
+            </div>
+
+            <div className="space-y-4">
+              <div>
+                <h3 className="text-2xl font-semibold text-blue-200">CompTIA A+ ce Certification</h3>
+                <p className="mt-2 text-gray-300">
+                  Earned through the CompTIA A+ Core 1 and Core 2 exams, validating foundational IT support,
+                  hardware, networking, operating systems, and troubleshooting knowledge.
+                </p>
+              </div>
+
+              <dl className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+                <div className="rounded-lg bg-gray-800 p-3">
+                  <dt className="text-xs uppercase tracking-wide text-gray-400">Issued</dt>
+                  <dd className="text-gray-100">June 25, 2026</dd>
+                </div>
+                <div className="rounded-lg bg-gray-800 p-3">
+                  <dt className="text-xs uppercase tracking-wide text-gray-400">Valid Through</dt>
+                  <dd className="text-gray-100">June 25, 2029</dd>
+                </div>
+                <div className="rounded-lg bg-gray-800 p-3">
+                  <dt className="text-xs uppercase tracking-wide text-gray-400">Exams</dt>
+                  <dd className="text-gray-100">220-1201 and 220-1202</dd>
+                </div>
+                <div className="rounded-lg bg-gray-800 p-3">
+                  <dt className="text-xs uppercase tracking-wide text-gray-400">Credential ID</dt>
+                  <dd className="text-gray-100">COMP001023018439</dd>
+                </div>
+                <div className="rounded-lg bg-gray-800 p-3 sm:col-span-2">
+                  <dt className="text-xs uppercase tracking-wide text-gray-400">Verification Code</dt>
+                  <dd className="mt-1 flex items-center justify-between gap-3">
+                    <span
+                      className="min-w-0 truncate font-mono text-sm text-gray-100"
+                      title="afad4807cf364e85976d4b301882acdc"
+                    >
+                      afad4807cf364e85976d4b301882acdc
+                    </span>
+                    <a
+                      href="https://cp.certmetrics.com/CompTIA/en/public/verify/credential/afad4807cf364e85976d4b301882acdc"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex shrink-0 items-center gap-2 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 px-4 py-2 text-sm font-semibold text-white shadow-md transition-transform duration-150 hover:scale-105 hover:shadow-[0_0_10px_2px_rgba(59,130,246,0.45)] focus:outline-none focus:ring-2 focus:ring-blue-300"
+                    >
+                      Verify Credential
+                      <FaExternalLinkAlt aria-hidden="true" className="text-xs" />
+                    </a>
+                  </dd>
+                </div>
+              </dl>
+            </div>
+          </motion.div>
+        </section>
+
         <div className="bg-gray-800 p-6 rounded-xl shadow-lg shadow-purple-700/20 relative overflow-hidden">
           <h2 className="flex items-center text-3xl font-bold mb-4">
             <FaTools className="mr-2 text-blue-500" />
@@ -267,7 +340,7 @@ export default function About() {
               <h3 className="text-xl font-semibold text-purple-400 text-center mb-3">Certifications</h3>
               <div className="flex justify-center">
                 <span className="bg-gray-700 px-3 py-1 rounded text-sm text-gray-300">
-                  CompTIA A+ (in progress, est. June 2026)
+                  CompTIA A+ ce Certified
                 </span>
               </div>
             </div>

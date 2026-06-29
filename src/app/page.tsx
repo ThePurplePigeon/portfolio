@@ -3,7 +3,7 @@
 import { ReactTyped } from 'react-typed'
 import Image from 'next/image'
 import Link from 'next/link'
-import { FaReact, FaPython, FaJava, FaGithub, FaGraduationCap, FaMapMarkerAlt } from "react-icons/fa";
+import { FaReact, FaPython, FaJava, FaGithub, FaGraduationCap, FaMapMarkerAlt, FaCertificate } from "react-icons/fa";
 import { SiQt, SiCplusplus, SiJavascript, SiTypescript, SiUnrealengine, SiUnity } from "react-icons/si";
 
 
@@ -80,16 +80,36 @@ export default function Home() {
         </span>
       </section>
 
-      <section className="max-w-2xl mx-auto text-center mt-4 mb-6">
+      <section className="max-w-3xl mx-auto text-center mt-4 mb-6 px-4">
         <div className="inline-block bg-gray-800/90 rounded-xl px-6 py-4 shadow-md border border-purple-500/30">
           <h3 className="text-lg font-semibold mb-1 text-purple-300">
             Currently Focusing On
           </h3>
           <p className="text-gray-200">
-            Studying for my CompTIA A+ certification, and looking<br />
+            CompTIA A+ ce certified and looking<br />
             for full-time IT and software engineering positions. <br />
             Working on a mobile formatting pass for this website.
           </p>
+        </div>
+
+        <div className="mx-auto mt-4 flex max-w-2xl flex-col items-center gap-4 rounded-xl border border-blue-400/30 bg-gray-800/90 p-4 shadow-md sm:flex-row sm:text-left">
+          <div className="flex h-24 w-24 shrink-0 items-center justify-center rounded-lg bg-[#f4f4f4] p-3 shadow-inner">
+            <Image
+              src="/certifications/comptia-a-plus.png"
+              alt="CompTIA A+ ce certification logo"
+              width={80}
+              height={80}
+              className="h-20 w-20 object-contain"
+            />
+          </div>
+          <div>
+            <p className="flex items-center justify-center gap-2 text-lg font-semibold text-blue-200 sm:justify-start">
+              <FaCertificate className="text-blue-400" /> CompTIA A+ ce Certified
+            </p>
+            <p className="mt-1 text-sm text-gray-300">
+              Issued June 25, 2026 | Valid through June 25, 2029
+            </p>
+          </div>
         </div>
       </section>
 
