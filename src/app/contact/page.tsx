@@ -67,7 +67,7 @@ export default function Contact() {
   return (
     <main className="flex min-h-screen items-center justify-center bg-gray-900 text-white p-4">
       <div className="max-w-md w-full">
-        <h1 className="text-4xl font-bold">Contact Me</h1>
+        <h1 className="text-center text-4xl font-bold sm:text-left">Contact Me</h1>
         <p className="text-center text-gray-400 mb-6">
           I'd love to hear from you! Fill out the form below to get in touch.
         </p>
