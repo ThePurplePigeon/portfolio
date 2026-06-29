@@ -1,222 +1,326 @@
 "use client";
+
 import Link from "next/link";
 import Image from "next/image";
 import Timeline from "@/app/projects/components/Timeline";
 import Features from "@/app/projects/components/Features";
 import { motion } from "framer-motion";
-import { FaLightbulb, FaInfoCircle } from "react-icons/fa";
+import { FaInfoCircle, FaLightbulb } from "react-icons/fa";
 
+const screenshots = [
+  {
+    label: "Original (unformatted)",
+    file: "test_unformatted.png",
+    alt: "Screenshot: original unformatted JavaScript snippet",
+    width: 296,
+    height: 344,
+  },
+  {
+    label: "Prettier default",
+    file: "test_prettier_formatted.png",
+    alt: "Screenshot: same snippet after default Prettier formatting",
+    width: 244,
+    height: 455,
+  },
+  {
+    label: "Prettier-er custom (All settings enabled)",
+    file: "test_prettierer_formatted.png",
+    alt: "Screenshot: same snippet after Prettier-er custom formatting",
+    width: 297,
+    height: 536,
+  },
+];
+
+const keyFeatures = [
+  {
+    title: "Personalized One-Click Formatting",
+    body: "Instantly apply your favorite formatting styles directly through VS Code's built-in settings - no configuration files, no hassle. Customize your coding environment effortlessly, exactly the way you like it.",
+  },
+  {
+    title: "Real-Time Readability Analysis",
+    body: "Get instant, actionable feedback on how readable your code really is. Prettier-er flags issues like excessive line length or confusing nesting, and offers tips to help you make your code clearer for yourself and your team.",
+  },
+];
+
+const outcomeCards = [
+  {
+    title: "What We Accomplished",
+    headingClass: "text-blue-300 border-blue-500",
+    items: [
+      {
+        id: "shipped",
+        content: (
+          <span>
+            <strong>Shipped v1.0</strong> to the VS Code Marketplace.
+          </span>
+        ),
+      },
+      {
+        id: "toggles",
+        content: (
+          <span>
+            Added <strong>eight zero-config style toggles</strong> including
+            Allman, matrix arrays, and blank-line retention.
+          </span>
+        ),
+      },
+      {
+        id: "readability",
+        content: (
+          <span>
+            Built a <strong>research-backed readability analyzer</strong> with 7
+            tunable metrics.
+          </span>
+        ),
+      },
+      {
+        id: "tests",
+        content: (
+          <span>
+            Maintained <strong>100% unit-test pass rate</strong> across core,
+            types, and extension repos.
+          </span>
+        ),
+      },
+    ],
+  },
+  {
+    title: "What We Learned",
+    headingClass: "text-purple-300 border-purple-500",
+    items: [
+      {
+        id: "ast-printer",
+        content: (
+          <span>
+            Deep diving into <strong>Prettier&apos;s AST printer</strong> taught
+            us that even &quot;opinionated&quot; tools can stay flexible with the
+            right hooks.
+          </span>
+        ),
+      },
+      {
+        id: "publishing",
+        content: (
+          <span>
+            Publishing to the marketplace highlighted the value of{" "}
+            <strong>CI/CD and signed VSIX</strong> pipelines.
+          </span>
+        ),
+      },
+      {
+        id: "teamwork",
+        content: (
+          <span>
+            Agile ceremonies, peer reviews, and two-week sprints kept 5
+            developers and a mentor in sync while keeping merge conflicts low.
+          </span>
+        ),
+      },
+    ],
+  },
+];
+
+const sectionHeadingClass =
+  "mx-auto block w-fit rounded-xl bg-white/30 px-4 py-2 text-center text-2xl font-semibold shadow-md backdrop-blur sm:text-3xl";
+
+const cardMotion = {
+  initial: { opacity: 0, y: 20 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true },
+};
 
 export default function PrettierErShowcase() {
-
-
   return (
-    <main className="bg-gray-900 text-white min-h-screen p-8"
+    <main
+      className="min-h-screen bg-gray-900 bg-cover bg-center p-4 text-white md:bg-fixed sm:p-8"
       style={{
         backgroundImage: "url('/prettier-er/prettierer_background.png')",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        backgroundAttachment: "fixed",
       }}
     >
-      <section className="max-w-5xl mx-auto space-y-12">
-
-        <section
-          className="
-            relative flex flex-col items-center justify-center h-screen overflow-hidden
-            bg-gradient-to-br from-[#181a37] via-[#332d7c] to-[#384af2]
-          "
+      <section className="mx-auto max-w-5xl space-y-8 sm:space-y-12">
+        <motion.section
+          className="overflow-hidden rounded-lg bg-gray-800/95 shadow-lg ring-1 ring-white/10"
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
         >
-          <div className="relative z-10 text-center px-4 space-y-6">
-            <motion.h1
-              className="text-5xl md:text-6xl font-bold text-white"
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-            >
-              Prettier-er
-            </motion.h1>
+          <div className="grid gap-6 p-5 sm:p-8 md:grid-cols-[minmax(0,1.05fr)_minmax(280px,0.95fr)] md:items-center">
+            <div className="space-y-5 text-center md:text-left">
+              <div className="space-y-3">
+                <h1 className="text-4xl font-bold text-white sm:text-5xl md:text-6xl">
+                  Prettier-er
+                </h1>
+                <p className="text-lg italic text-gray-200 sm:text-xl md:text-2xl">
+                  Your code, your style, on your terms.
+                </p>
+                <p className="mx-auto max-w-xl text-gray-300 md:mx-0">
+                  Customize Prettier&apos;s formatter to match your style, and
+                  stay readable with a single click.
+                </p>
+              </div>
 
-            <motion.p
-              className="text-xl md:text-2xl italic text-gray-200"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 1, delay: 0.3 }}
-            >
-              Your code, your style, on your terms.
-            </motion.p>
+              <div className="flex flex-wrap justify-center gap-2 md:justify-start">
+                <a
+                  title="VS Code Extension Download Count"
+                  href="https://marketplace.visualstudio.com/items?itemName=omp.prettier-er"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Image
+                    src="https://vsmarketplacebadges.dev/downloads/omp.prettier-er.svg"
+                    alt="VS Code Marketplace Downloads"
+                    width={106}
+                    height={20}
+                    unoptimized
+                  />
+                </a>
+                <a
+                  title="VS Code Extension Install Count"
+                  href="https://marketplace.visualstudio.com/items?itemName=omp.prettier-er"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Image
+                    src="https://vsmarketplacebadges.dev/installs/omp.prettier-er.svg"
+                    alt="VS Code Marketplace Installs"
+                    width={86}
+                    height={20}
+                    unoptimized
+                  />
+                </a>
+              </div>
 
-            <motion.p
-              className="max-w-xl mx-auto text-gray-200"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.6 }}
-            >
-              Customize Prettier's formatter to match your style, and stay readable with a single click.
-            </motion.p>
+              <div className="flex flex-col items-center gap-3 sm:flex-row sm:justify-center md:justify-start">
+                <a
+                  title="Open GitHub Repo"
+                  aria-label="Open GitHub Repo"
+                  href="https://github.com/OpenMindedPrettier"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex min-h-11 w-full items-center justify-center rounded-full bg-gray-900/70 px-6 py-3 font-semibold text-white shadow-lg transition duration-150 hover:bg-gray-700 sm:w-auto"
+                >
+                  View on GitHub
+                </a>
+                <a
+                  title="Open VS Code Marketplace"
+                  aria-label="Open VS Code Marketplace"
+                  href="https://marketplace.visualstudio.com/items?itemName=omp.prettier-er"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex min-h-11 w-full items-center justify-center rounded-full bg-gradient-to-r from-blue-500 to-purple-500 px-6 py-3 font-semibold text-white shadow-lg transition duration-150 hover:shadow-[0_0_18px_rgba(99,102,241,0.65)] sm:w-auto"
+                >
+                  Get it on Marketplace
+                </a>
+              </div>
+            </div>
 
-            <motion.div
-              className="flex justify-center gap-2"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.8, delay: 0.9 }}
-            >
-              <a
-                title="VS Code Extension Download Count"
-                href="https://marketplace.visualstudio.com/items?itemName=omp.prettier-er"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Image
-                  src="https://img.shields.io/visual-studio-marketplace/d/omp.prettier-er"
-                  alt="VS Code Marketplace Downloads"
-                  width={120}
-                  height={20}
-                  unoptimized
-                />
-              </a>
-              <a
-                title="VS Code Extension Install Count"
-                href="https://marketplace.visualstudio.com/items?itemName=omp.prettier-er"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Image
-                  src="https://img.shields.io/visual-studio-marketplace/i/omp.prettier-er"
-                  alt="VS Code Marketplace Installs"
-                  width={100}
-                  height={20}
-                  unoptimized
-                />
-              </a>
-            </motion.div>
-
-            <motion.div
-              className="flex flex-wrap justify-center gap-4 mt-4"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.8, delay: 1.2 }}
-            >
-              <a
-                title="Open GitHub Repo"
-                aria-label="Open GitHub Repo"
-                href="https://github.com/OpenMindedPrettier"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-6 py-3 bg-gray-800 bg-opacity-60 rounded-full text-white font-semibold shadow-lg transition transform duration-150 hover:scale-110 hover:bg-gray-700"
-              >
-                View on GitHub
-              </a>
-              <a
-                title="Open VS Code Marketplace"
-                aria-label="Open VS Code Marketplace"
-                href="https://marketplace.visualstudio.com/items?itemName=omp.prettier-er"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full text-white font-semibold shadow-lg transform transition duration-150 hover:scale-105"
-              >
-                Get it on Marketplace
-              </a>
-            </motion.div>
-          </div>
-
-          <motion.div
-            className="absolute bottom-6 md:bottom-10"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1, delay: 1.5 }}
-          >
-            <svg
-              role="img"
-              aria-label="Scroll down"
-              className="w-6 h-6 text-gray-400 animate-bounce"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M19 9l-7 7-7-7"
+            <figure className="mx-auto w-full max-w-md rounded-lg bg-gray-950/75 p-3 shadow-2xl ring-1 ring-white/10">
+              <Image
+                src="/prettier-er/test_prettierer_formatted.png"
+                alt="Prettier-er custom formatting output preview"
+                width={297}
+                height={536}
+                className="mx-auto max-h-64 w-auto max-w-full rounded-md object-contain sm:max-h-80 md:max-h-[360px]"
+                priority
               />
-            </svg>
-          </motion.div>
-        </section>
+              <figcaption className="mt-3 text-center text-sm text-gray-300">
+                Custom formatting preview
+              </figcaption>
+            </figure>
+          </div>
+        </motion.section>
 
-        <section className="py-16 bg-gray-800 text-white">
-          <div className="container mx-auto px-6">
-            <h2 className="text-4xl font-bold text-center mb-12">Project Overview</h2>
+        <section className="rounded-lg bg-gray-800/95 py-8 text-white shadow-lg sm:py-16">
+          <div className="mx-auto px-4 sm:px-6">
+            <h2 className="mb-8 text-center text-3xl font-bold sm:mb-12 sm:text-4xl">
+              Project Overview
+            </h2>
 
-            <div className="space-y-12">
-
+            <div className="space-y-8 sm:space-y-10">
               <motion.div
-                className="bg-gray-700 p-8 rounded-lg shadow-lg border-l-4 border-blue-500 space-y-4"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                className="space-y-4 rounded-lg border-l-4 border-blue-500 bg-gray-700 p-5 shadow-lg sm:p-8"
+                {...cardMotion}
                 transition={{ duration: 0.6 }}
-                viewport={{ once: true }}
               >
-                <div className="flex items-center mb-2 pb-2 border-b border-blue-500 group">
+                <div className="group flex items-start border-b border-blue-500 pb-2">
                   <FaInfoCircle
-                    aria-hidden="true" focusable="false"
-                    className="text-blue-400 mr-2 text-3xl transition-all duration-300 group-hover:text-blue-300"
+                    aria-hidden="true"
+                    focusable="false"
+                    className="mr-2 mt-0.5 flex-none text-2xl text-blue-400 transition-all duration-300 group-hover:text-blue-300 sm:text-3xl"
                   />
-                  <h3 className="text-2xl font-semibold">What is Prettier-er?</h3>
+                  <h3 className="text-xl font-semibold sm:text-2xl">
+                    What is Prettier-er?
+                  </h3>
                 </div>
 
-                <p className="text-lg text-gray-300">
-                  Prettier-er is a Visual Studio Code extension built on top of the popular Prettier formatter. While Prettier solves endless debates about code style by sticking to a single opinion, it leaves out anyone who wants even a bit of customization. If your preferred formatting style doesn't match Prettier's, you're usually stuck searching for workarounds or giving up altogether.
+                <p className="text-base leading-relaxed text-gray-300 sm:text-lg">
+                  Prettier-er is a Visual Studio Code extension built on top of
+                  the popular Prettier formatter. While Prettier solves endless
+                  debates about code style by sticking to a single opinion, it
+                  leaves out anyone who wants even a bit of customization. If
+                  your preferred formatting style doesn&apos;t match Prettier&apos;s,
+                  you&apos;re usually stuck searching for workarounds or giving up
+                  altogether.
                 </p>
-                <p className="text-lg text-gray-300">
-                  Prettier-er lets you control your code's appearance using simple VS Code workspace settings. Choose options like Allman-style braces, matrix-style arrays, or force objects and arrays to span multiple lines. These changes take effect instantly, and need no config files to manage.
+                <p className="text-base leading-relaxed text-gray-300 sm:text-lg">
+                  Prettier-er lets you control your code&apos;s appearance using
+                  simple VS Code workspace settings. Choose options like
+                  Allman-style braces, matrix-style arrays, or force objects and
+                  arrays to span multiple lines. These changes take effect
+                  instantly, and need no config files to manage.
                 </p>
-                <p className="text-lg text-gray-300">
-                  On top of formatting, Prettier-er includes a Readability Analysis tool that reviews your code for potential problem areas. It checks things like average line length and nesting depth, and then offers suggestions to make your code easier to read.
+                <p className="text-base leading-relaxed text-gray-300 sm:text-lg">
+                  On top of formatting, Prettier-er includes a Readability
+                  Analysis tool that reviews your code for potential problem
+                  areas. It checks things like average line length and nesting
+                  depth, and then offers suggestions to make your code easier to
+                  read.
                 </p>
               </motion.div>
-
-
 
               <motion.div
-                className="bg-gray-700 p-8 rounded-lg shadow-lg border-l-4 border-purple-500 space-y-4"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                className="space-y-4 rounded-lg border-l-4 border-purple-500 bg-gray-700 p-5 shadow-lg sm:p-8"
+                {...cardMotion}
                 transition={{ duration: 0.6 }}
-                viewport={{ once: true }}
               >
-                <div className="flex items-center mb-2 pb-2 border-b border-purple-500 group">
+                <div className="group flex items-start border-b border-purple-500 pb-2">
                   <FaLightbulb
-                    aria-hidden="true" focusable="false"
-                    className="text-purple-400 mr-2 text-3xl transition-all duration-300 group-hover:text-purple-300"
+                    aria-hidden="true"
+                    focusable="false"
+                    className="mr-2 mt-0.5 flex-none text-2xl text-purple-400 transition-all duration-300 group-hover:text-purple-300 sm:text-3xl"
                   />
-                  <h3 className="text-2xl font-semibold">Motivation</h3>
+                  <h3 className="text-xl font-semibold sm:text-2xl">
+                    Motivation
+                  </h3>
                 </div>
 
-                <p className="text-lg text-gray-300">
-                  For our senior project, we wanted to solve a real problem, not just another web app demo. Prettier was an obvious target: its strict, one-size-fits-all approach annoyed anyone who needed even minor tweaks, while more flexible alternatives demanded heavy setup that most developers avoid.
+                <p className="text-base leading-relaxed text-gray-300 sm:text-lg">
+                  For our senior project, we wanted to solve a real problem, not
+                  just another web app demo. Prettier was an obvious target: its
+                  strict, one-size-fits-all approach annoyed anyone who needed
+                  even minor tweaks, while more flexible alternatives demanded
+                  heavy setup that most developers avoid.
                 </p>
 
-                <p className="text-lg text-gray-300">
-                  Our answer was Prettier-er: an extension that keeps everything easy but gives you control over your formatting. Now, anyone can quickly set their favorite code style in VS Code and get real feedback on code clarity, whether they're a beginner or a seasoned dev.
+                <p className="text-base leading-relaxed text-gray-300 sm:text-lg">
+                  Our answer was Prettier-er: an extension that keeps everything
+                  easy but gives you control over your formatting. Now, anyone
+                  can quickly set their favorite code style in VS Code and get
+                  real feedback on code clarity, whether they&apos;re a beginner or
+                  a seasoned dev.
                 </p>
               </motion.div>
 
-
-
-              <section id="development-journey" className="py-16">
+              <section id="development-journey" className="py-1 sm:py-2">
                 <Timeline />
               </section>
 
-
               <motion.div
-                className="bg-gray-700 p-8 rounded-lg shadow-lg"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.4 }}
-                viewport={{ once: true }}
+                className="rounded-lg bg-gray-700 p-5 shadow-lg sm:p-8"
+                {...cardMotion}
+                transition={{ duration: 0.6, delay: 0.1 }}
               >
-                <h3 className="text-2xl font-semibold border-b border-purple-500 pb-2 mb-4">
+                <h3 className="mb-5 border-b border-purple-500 pb-2 text-xl font-semibold sm:text-2xl">
                   Project Impact
                 </h3>
                 <Features />
@@ -225,152 +329,96 @@ export default function PrettierErShowcase() {
           </div>
         </section>
 
-
         <motion.section
           role="region"
           aria-label="Screenshot Gallery"
-          className="space-y-6"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          className="space-y-6 text-center sm:space-y-8"
+          {...cardMotion}
           transition={{ duration: 0.5 }}
-          viewport={{ once: true }}
         >
-          <h2 className="
-            text-3xl font-semibold text-center
-            bg-white/30 px-4 py-2 rounded-xl
-            inline-block
-            shadow-md
-            backdrop-blur
-            ">Screenshots</h2>
+          <h2 className={sectionHeadingClass}>Screenshots</h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {[
-              { label: "Original (unformatted)", file: "test_unformatted.png", alt: "Screenshot: original unformatted JavaScript snippet" },
-              { label: "Prettier default", file: "test_prettier_formatted.png", alt:"Screenshot: same snippet after default Prettier formatting" },
-              { label: "Prettier-er custom (All settings enabled)", file: "test_prettierer_formatted.png", alt:"Screenshot: same snippet after Prettier-er custom formatting" },
-            ].map(({ label, file, alt }) => (
-              <figure key={file} className="space-y-2 flex flex-col items-center">
-                <Image
-                  src={`/prettier-er/${file}`}
-                  alt={alt}
-                  width={700}
-                  height={460}
-                  className="rounded-lg shadow-lg object-cover"
-                />
-                <figcaption className="
-                  text-sm text-white text-center
-                  bg-black/70 px-3 py-1 rounded-lg
-                  shadow
-                  backdrop-blur
-                ">
+          <div className="grid grid-cols-1 justify-items-center gap-6 md:grid-cols-3">
+            {screenshots.map(({ label, file, alt, width, height }) => (
+              <figure
+                key={file}
+                className="flex w-full max-w-md flex-col items-center space-y-2 md:max-w-none"
+              >
+                <div className="flex h-72 w-full items-center justify-center rounded-lg bg-gray-950/75 p-3 shadow-lg ring-1 ring-white/10 sm:h-80 md:h-72">
+                  <Image
+                    src={`/prettier-er/${file}`}
+                    alt={alt}
+                    width={width}
+                    height={height}
+                    className="max-h-full w-auto max-w-full rounded-md object-contain"
+                  />
+                </div>
+                <figcaption className="rounded-lg bg-black/70 px-3 py-1 text-center text-sm text-white shadow backdrop-blur">
                   {label}
                 </figcaption>
-
               </figure>
             ))}
           </div>
         </motion.section>
 
         <motion.section
-          className="space-y-8"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.4 }}
-          viewport={{ once: true }}
+          className="space-y-6 text-center sm:space-y-8"
+          {...cardMotion}
+          transition={{ duration: 0.5, delay: 0.1 }}
         >
-          <h2 className="
-            text-3xl font-semibold text-center
-            bg-white/30 px-4 py-2 rounded-xl
-            inline-block
-            shadow-md
-            backdrop-blur
-            ">Key Features</h2>
+          <h2 className={sectionHeadingClass}>Key Features</h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="bg-gray-700 p-6 rounded-lg shadow-lg space-y-3">
-              <h3 className="text-xl font-semibold text-purple-200">
-                Personalized One-Click Formatting
-              </h3>
-              <p className="text-gray-300 leading-relaxed">
-                Instantly apply your favorite formatting styles directly through VS Code's built-in settings—no configuration files, no hassle. Customize your coding environment effortlessly, exactly the way you like it.
-              </p>
-            </div>
-
-
-            <div className="bg-gray-700 p-6 rounded-lg shadow-lg space-y-3">
-              <h3 className="text-xl font-semibold text-purple-200">
-                Real-Time Readability Analysis
-              </h3>
-              <p className="text-gray-300 leading-relaxed">
-                Get instant, actionable feedback on how readable your code really is. Prettier-er flags issues like excessive line length or confusing nesting, and offers tips to help you make your code clearer for yourself and your team.
-              </p>
-            </div>
+          <div className="grid grid-cols-1 justify-items-center gap-6 md:grid-cols-2 md:gap-8">
+            {keyFeatures.map((feature) => (
+              <div
+                key={feature.title}
+                className="w-full max-w-xl space-y-3 rounded-lg bg-gray-700 p-5 text-left shadow-lg sm:p-6"
+              >
+                <h3 className="text-xl font-semibold text-purple-200">
+                  {feature.title}
+                </h3>
+                <p className="leading-relaxed text-gray-300">{feature.body}</p>
+              </div>
+            ))}
           </div>
         </motion.section>
-
-
 
         <motion.section
-          className="space-y-8"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.6 }}
-          viewport={{ once: true }}
+          className="space-y-6 text-center sm:space-y-8"
+          {...cardMotion}
+          transition={{ duration: 0.5, delay: 0.2 }}
         >
-          <h2 className="
-            text-3xl font-semibold text-center
-            bg-white/30 px-4 py-2 rounded-xl
-            inline-block
-            shadow-md
-            backdrop-blur
-            ">Outcomes & Reflections</h2>
+          <h2 className={sectionHeadingClass}>Outcomes &amp; Reflections</h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-
-            <div className="bg-gray-700 p-6 rounded-lg shadow-lg space-y-4">
-              <h3 className="text-xl font-semibold text-blue-300 border-b border-blue-500 pb-2">
-                What We Accomplished
-              </h3>
-              <ul className="list-disc ml-5 space-y-2 text-gray-300 leading-relaxed">
-                <li>
-                  <strong>Shipped v1.0</strong> to the VS Code Marketplace.
-                </li>
-                <li>
-                  Added <strong>eight zero-config style toggles</strong> (Allman, matrix arrays, blank-line retention …).
-                </li>
-                <li>
-                  Built a <strong>research-backed readability analyzer </strong> with 7 tunable metrics.
-                </li>
-                <li>
-                  Maintained <strong>100% unit-test pass rate</strong> across core, types & extension repos.
-                </li>
-              </ul>
-            </div>
-
-            <div className="bg-gray-700 p-6 rounded-lg shadow-lg space-y-4">
-              <h3 className="text-xl font-semibold text-purple-300 border-b border-purple-500 pb-2">
-                What We Learned
-              </h3>
-              <ul className="list-disc ml-5 space-y-2 text-gray-300 leading-relaxed">
-                <li>Deep dive into <strong>Prettier's AST printer</strong> taught us that even “opinionated” tools can stay flexible with the right hooks.</li>
-                <li>Publishing to the marketplace highlighted the value of <strong>CI/CD & signed VSIX</strong> pipelines.</li>
-                <li>Agile ceremonies (two-week sprints, peer reviews) kept 5 developers and a mentor in sync & cut merge conflicts to near-zero.</li>
-              </ul>
-            </div>
+          <div className="grid grid-cols-1 justify-items-center gap-6 md:grid-cols-2 md:gap-8">
+            {outcomeCards.map((card) => (
+              <div
+                key={card.title}
+                className="w-full max-w-xl space-y-4 rounded-lg bg-gray-700 p-5 text-left shadow-lg sm:p-6"
+              >
+                <h3
+                  className={`border-b pb-2 text-xl font-semibold ${card.headingClass}`}
+                >
+                  {card.title}
+                </h3>
+                <ul className="ml-5 list-disc space-y-2 leading-relaxed text-gray-300">
+                  {card.items.map((item) => (
+                    <li key={item.id}>{item.content}</li>
+                  ))}
+                </ul>
+              </div>
+            ))}
           </div>
         </motion.section>
-
 
         <motion.section
           className="text-center"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.8 }}
-          viewport={{ once: true }}
+          {...cardMotion}
+          transition={{ duration: 0.5, delay: 0.2 }}
         >
           <Link
             href="/projects/prettier-er/docs"
-            className="inline-block px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-full font-semibold hover:shadow-lg transition-transform transform duration-150 hover:scale-105"
+            className="inline-flex min-h-11 items-center justify-center rounded-full bg-gradient-to-r from-blue-500 to-purple-500 px-6 py-3 font-semibold text-white transition duration-150 hover:shadow-[0_0_18px_rgba(99,102,241,0.65)]"
           >
             View Technical Documentation
           </Link>
