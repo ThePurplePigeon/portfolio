@@ -2,18 +2,20 @@
 import { useState } from "react";
 import { FaSpinner } from "react-icons/fa";
 
-export default function Contact() {
-  const[name, setName] = useState("");
-  const[email, setEmail] = useState("");
-  const[message, setMessage] = useState("");
-  const[website, setWebsite] = useState("");
+type ContactErrors = { name?: string; email?: string; message?: string };
 
-  const [errors, setErrors] = useState<{ name?: string; email?: string; message?: string }>({});
+const validateEmail = (email: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+
+export default function Contact() {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
+  const [website, setWebsite] = useState("");
+
+  const [errors, setErrors] = useState<ContactErrors>({});
 
   const [success, setSuccess] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-
-  const validateEmail = (email: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
   const cleaned = {
     name: name.trim(),
@@ -25,7 +27,7 @@ export default function Contact() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setSuccess("");
-    const newErrors: { name?: string; email?: string; message?: string } = {};
+    const newErrors: ContactErrors = {};
 
     if (!cleaned.name) newErrors.name = "Name is required.";
     if (!cleaned.email) {
@@ -59,8 +61,9 @@ export default function Contact() {
       }
     } catch {
       setErrors({ message: "Network error. Please try again later." });
+    } finally {
+      setIsLoading(false);
     }
-    setIsLoading(false);
   };
 
 
@@ -85,6 +88,7 @@ export default function Contact() {
               placeholder="Your Name"
               value={name || ""}
               onChange={(e) => setName(e.target.value)}
+              aria-invalid={Boolean(errors.name)}
               className={`mt-1 w-full p-2 rounded bg-gray-800 border border-gray-700 text-white focus:outline-none input-gradient ${errors.name ? "input-error" : ""}`}
             />
             {errors.name && <p className="text-red-500 text-sm" aria-live="polite">{errors.name}</p>}
@@ -100,6 +104,7 @@ export default function Contact() {
               placeholder="youremail@example.com"
               value={email || ""}
               onChange={(e) => setEmail(e.target.value)}
+              aria-invalid={Boolean(errors.email)}
               className={`mt-1 w-full p-2 rounded bg-gray-800 border border-gray-700 text-white focus:outline-none input-gradient ${errors.email ? "input-error" : ""}`}
             />
             {errors.email && <p className="mt-1 text-sm text-red-500" aria-live="polite">{errors.email}</p>}
@@ -115,6 +120,7 @@ export default function Contact() {
               rows={5}
               value={message || ""}
               onChange={(e) => setMessage(e.target.value)}
+              aria-invalid={Boolean(errors.message)}
               className={`mt-1 w-full p-2 rounded bg-gray-800 border border-gray-700 text-white focus:outline-none input-gradient ${errors.message ? "input-error" : ""}`}
             />
             {errors.message && <p className="mt-1 text-sm text-red-500" aria-live="polite">{errors.message}</p>}
