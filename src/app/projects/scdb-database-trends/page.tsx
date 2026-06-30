@@ -36,8 +36,8 @@ export default function ScdbShowcase() {
           />
         </section>
 
-        <section className="rounded-lg bg-gray-800 py-8 shadow-lg sm:py-14">
-          <div className="space-y-5 px-5 sm:space-y-6 sm:px-6">
+        <section className="rounded-lg bg-gray-800 p-5 shadow-lg sm:p-8">
+          <div className="space-y-5 sm:space-y-6">
             <div className="flex items-start gap-3 border-b border-blue-500 pb-2 sm:items-center">
               <FaGavel
                 aria-hidden="true"
