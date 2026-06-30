@@ -142,6 +142,9 @@ export default function PrettierErShowcase() {
           <div className="grid gap-6 p-5 sm:p-8 md:grid-cols-[minmax(0,1.05fr)_minmax(280px,0.95fr)] md:items-center">
             <div className="space-y-5 text-center md:text-left">
               <div className="space-y-3">
+                <p className="text-sm font-semibold text-purple-300">
+                  VS Code formatter extension
+                </p>
                 <h1 className="text-4xl font-bold text-white sm:text-5xl md:text-6xl">
                   Prettier-er
                 </h1>

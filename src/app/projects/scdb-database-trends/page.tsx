@@ -25,6 +25,9 @@ export default function ScdbShowcase() {
           transition={{ duration: 0.5, delay: 0.2 }}
         >
           <div className="flex-1">
+            <p className="text-sm font-semibold text-purple-300">
+              Supreme Court data explorer
+            </p>
             <h1 className="text-3xl md:text-4xl font-bold tracking-tight">
               SCDB Trend Explorer
             </h1>
