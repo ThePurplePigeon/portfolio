@@ -1,10 +1,11 @@
 "use client";
 
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import Timeline from "@/app/projects/components/Timeline";
 import Features from "@/app/projects/components/Features";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { FaInfoCircle, FaLightbulb } from "react-icons/fa";
 
 const screenshots = [
@@ -31,14 +32,16 @@ const screenshots = [
   },
 ];
 
+const heroPreviewIndex = 2;
+
 const keyFeatures = [
   {
     title: "Personalized One-Click Formatting",
-    body: "Instantly apply your favorite formatting styles directly through VS Code's built-in settings - no configuration files, no hassle. Customize your coding environment effortlessly, exactly the way you like it.",
+    body: "Apply formatting preferences through VS Code's built-in settings, without adding separate config files. The goal was to keep the workflow close to normal Prettier while still letting users choose a few style details.",
   },
   {
     title: "Real-Time Readability Analysis",
-    body: "Get instant, actionable feedback on how readable your code really is. Prettier-er flags issues like excessive line length or confusing nesting, and offers tips to help you make your code clearer for yourself and your team.",
+    body: "Run a readability check from the editor and see where a file may be getting harder to scan. Prettier-er looks at issues like long lines and deep nesting, then reports the areas that may need attention.",
   },
 ];
 
@@ -49,38 +52,22 @@ const outcomeCards = [
     items: [
       {
         id: "shipped",
-        content: (
-          <span>
-            <strong>Shipped v1.0</strong> to the VS Code Marketplace.
-          </span>
-        ),
+        content: "Shipped v1.0 to the VS Code Marketplace.",
       },
       {
         id: "toggles",
-        content: (
-          <span>
-            Added <strong>eight zero-config style toggles</strong> including
-            Allman, matrix arrays, and blank-line retention.
-          </span>
-        ),
+        content:
+          "Added eight zero-config style toggles including Allman, matrix arrays, and blank-line retention.",
       },
       {
         id: "readability",
-        content: (
-          <span>
-            Built a <strong>research-backed readability analyzer</strong> with 7
-            tunable metrics.
-          </span>
-        ),
+        content:
+          "Built a research-backed readability analyzer with 7 tunable metrics.",
       },
       {
         id: "tests",
-        content: (
-          <span>
-            Maintained <strong>100% unit-test pass rate</strong> across core,
-            types, and extension repos.
-          </span>
-        ),
+        content:
+          "Maintained 100% unit-test pass rate across core, types, and extension repos.",
       },
     ],
   },
@@ -90,31 +77,18 @@ const outcomeCards = [
     items: [
       {
         id: "ast-printer",
-        content: (
-          <span>
-            Deep diving into <strong>Prettier&apos;s AST printer</strong> taught
-            us that even &quot;opinionated&quot; tools can stay flexible with the
-            right hooks.
-          </span>
-        ),
+        content:
+          'Deep diving into Prettier\'s AST printer taught us that even "opinionated" tools can stay flexible with the right hooks.',
       },
       {
         id: "publishing",
-        content: (
-          <span>
-            Publishing to the marketplace highlighted the value of{" "}
-            <strong>CI/CD and signed VSIX</strong> pipelines.
-          </span>
-        ),
+        content:
+          "Publishing to the marketplace highlighted the value of CI/CD and signed VSIX pipelines.",
       },
       {
         id: "teamwork",
-        content: (
-          <span>
-            Agile ceremonies, peer reviews, and two-week sprints kept 5
-            developers and a mentor in sync while keeping merge conflicts low.
-          </span>
-        ),
+        content:
+          "Agile ceremonies, peer reviews, and two-week sprints kept 5 developers and a mentor in sync while keeping merge conflicts low.",
       },
     ],
   },
@@ -130,13 +104,34 @@ const cardMotion = {
 };
 
 export default function PrettierErShowcase() {
+  const [previewIndex, setPreviewIndex] = useState<number | null>(null);
+  const closePreviewButtonRef = useRef<HTMLButtonElement>(null);
+  const preview = previewIndex === null ? null : screenshots[previewIndex];
+
+  useEffect(() => {
+    if (previewIndex === null) {
+      return;
+    }
+
+    const previousOverflow = document.body.style.overflow;
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setPreviewIndex(null);
+      }
+    };
+
+    document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", handleKeyDown);
+    closePreviewButtonRef.current?.focus();
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [previewIndex]);
+
   return (
-    <main
-      className="min-h-screen bg-gray-900 bg-cover bg-center p-4 text-white md:bg-fixed sm:p-8"
-      style={{
-        backgroundImage: "url('/prettier-er/prettierer_background.png')",
-      }}
-    >
+    <main className="min-h-screen bg-gray-900 p-4 text-white sm:p-8 md:bg-[url('/prettier-er/prettierer_background.png')] md:bg-cover md:bg-center md:bg-fixed">
       <section className="mx-auto max-w-5xl space-y-8 sm:space-y-12">
         <motion.section
           className="overflow-hidden rounded-lg bg-gray-800/95 shadow-lg ring-1 ring-white/10"
@@ -215,14 +210,21 @@ export default function PrettierErShowcase() {
             </div>
 
             <figure className="mx-auto w-full max-w-md rounded-lg bg-gray-950/75 p-3 shadow-2xl ring-1 ring-white/10">
-              <Image
-                src="/prettier-er/test_prettierer_formatted.png"
-                alt="Prettier-er custom formatting output preview"
-                width={297}
-                height={536}
-                className="mx-auto max-h-64 w-auto max-w-full rounded-md object-contain sm:max-h-80 md:max-h-[360px]"
-                priority
-              />
+              <button
+                type="button"
+                aria-label="Open larger preview: custom formatting preview"
+                onClick={() => setPreviewIndex(heroPreviewIndex)}
+                className="group flex w-full cursor-zoom-in items-center justify-center rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-300"
+              >
+                <Image
+                  src="/prettier-er/test_prettierer_formatted.png"
+                  alt="Prettier-er custom formatting output preview"
+                  width={297}
+                  height={536}
+                  className="mx-auto max-h-64 w-auto max-w-full rounded-md object-contain transition duration-150 group-hover:scale-[1.02] sm:max-h-80 md:max-h-[360px]"
+                  priority
+                />
+              </button>
               <figcaption className="mt-3 text-center text-sm text-gray-300">
                 Custom formatting preview
               </figcaption>
@@ -339,20 +341,25 @@ export default function PrettierErShowcase() {
           <h2 className={sectionHeadingClass}>Screenshots</h2>
 
           <div className="grid grid-cols-1 justify-items-center gap-6 md:grid-cols-3">
-            {screenshots.map(({ label, file, alt, width, height }) => (
+            {screenshots.map(({ label, file, alt, width, height }, index) => (
               <figure
                 key={file}
                 className="flex w-full max-w-md flex-col items-center space-y-2 md:max-w-none"
               >
-                <div className="flex h-72 w-full items-center justify-center rounded-lg bg-gray-950/75 p-3 shadow-lg ring-1 ring-white/10 sm:h-80 md:h-72">
+                <button
+                  type="button"
+                  aria-label={`Open larger preview: ${label}`}
+                  onClick={() => setPreviewIndex(index)}
+                  className="group flex h-72 w-full cursor-zoom-in items-center justify-center rounded-lg bg-gray-950/75 p-3 shadow-lg ring-1 ring-white/10 transition hover:ring-purple-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-300 sm:h-80 md:h-72"
+                >
                   <Image
                     src={`/prettier-er/${file}`}
                     alt={alt}
                     width={width}
                     height={height}
-                    className="max-h-full w-auto max-w-full rounded-md object-contain"
+                    className="max-h-full w-auto max-w-full rounded-md object-contain transition duration-150 group-hover:scale-[1.02]"
                   />
-                </div>
+                </button>
                 <figcaption className="rounded-lg bg-black/70 px-3 py-1 text-center text-sm text-white shadow backdrop-blur">
                   {label}
                 </figcaption>
@@ -424,6 +431,64 @@ export default function PrettierErShowcase() {
           </Link>
         </motion.section>
       </section>
+
+      <AnimatePresence>
+        {preview && (
+          <motion.div
+            className="fixed inset-0 z-50 flex items-center justify-center p-4"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.18 }}
+          >
+            <button
+              type="button"
+              aria-label="Close screenshot preview"
+              className="absolute inset-0 cursor-default bg-black/85"
+              onClick={() => setPreviewIndex(null)}
+            />
+
+            <motion.div
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="screenshot-preview-title"
+              className="relative flex max-h-[88vh] max-w-[94vw] flex-col rounded-lg bg-gray-900 shadow-2xl ring-1 ring-white/15"
+              initial={{ opacity: 0, scale: 0.96, y: 12 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.96, y: 12 }}
+              transition={{ duration: 0.18 }}
+            >
+              <div className="flex items-center justify-between gap-4 border-b border-white/10 px-4 py-3">
+                <h3
+                  id="screenshot-preview-title"
+                  className="text-left text-base font-semibold text-white sm:text-lg"
+                >
+                  {preview.label}
+                </h3>
+                <button
+                  type="button"
+                  ref={closePreviewButtonRef}
+                  onClick={() => setPreviewIndex(null)}
+                  className="inline-flex min-h-10 items-center justify-center rounded-md bg-gray-800 px-3 text-sm font-semibold text-gray-100 transition hover:bg-gray-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-300"
+                >
+                  Close
+                </button>
+              </div>
+
+              <div className="overflow-auto p-3 sm:p-5">
+                <Image
+                  src={`/prettier-er/${preview.file}`}
+                  alt={preview.alt}
+                  width={preview.width}
+                  height={preview.height}
+                  className="h-auto max-w-none rounded-md object-contain"
+                  style={{ width: "min(88vw, 760px)" }}
+                />
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </main>
   );
 }

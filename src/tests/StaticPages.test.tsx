@@ -1,5 +1,6 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom';
 
 import Home from '@/app/page';
@@ -98,5 +99,26 @@ describe('Certification content', () => {
             'href',
             'https://cp.certmetrics.com/CompTIA/en/public/verify/credential/afad4807cf364e85976d4b301882acdc'
         );
+    });
+});
+
+describe('Prettier-er project page interactions', () => {
+    test('opens and closes the screenshot preview from the hero image', async () => {
+        const user = userEvent.setup();
+        render(<Prettier />);
+
+        await user.click(
+            screen.getByRole('button', { name: /open larger preview: custom formatting preview/i })
+        );
+
+        expect(
+            screen.getByRole('dialog', { name: /prettier-er custom \(all settings enabled\)/i })
+        ).toBeInTheDocument();
+        expect(document.body).toHaveStyle({ overflow: 'hidden' });
+
+        await user.click(screen.getByRole('button', { name: /^close$/i }));
+
+        expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
+        expect(document.body.style.overflow).toBe('');
     });
 });

@@ -8,54 +8,52 @@ import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 const journey: Array<{ title: string; body: ReactNode }> = [
   {
     title: "Origin",
-    body: `Prettier-er began as an effort to create a senior project that stood apart from typical web apps or trendy AI demos. We wanted something challenging yet widely useful. Given our shared frustrations with Prettier's inflexible formatting rules, a customizable formatter quickly emerged as an ideal choice. After briefly considering a document translation tool, we ultimately selected Prettier-er for its practicality, technical depth, and potential for real-world impact via the VS Code marketplace.`,
+    body: `Prettier-er started as a senior project idea. We wanted to build something more technical than a standard class web app, and Prettier gave us a concrete problem to work on: its defaults are useful, but they do not leave much room for teams that prefer a different style. After comparing a few ideas, we chose a customizable formatter because it was practical, technically interesting, and publishable as a VS Code extension.`,
   },
   {
     title: "Preliminary Research",
     body: (
       <>
         Before coding, we researched formatting styles that differed from
-        Prettier&apos;s defaults and explored methods to measure code readability
-        objectively. Our process included reviewing academic papers and industry
-        best practices to ensure the Readability Analysis feature had a strong
-        research foundation. Additionally, we unified the three official
-        Prettier repositories under{" "}
+        Prettier&apos;s defaults and looked for measurable ways to discuss code
+        readability. We reviewed academic papers and common readability
+        guidelines, then used that research to shape the analyzer. We also moved
+        the three Prettier forks under{" "}
         <a
           href="https://github.com/OpenMindedPrettier"
-          className="text-purple-400 hover:underline"
+          className="underline decoration-gray-400 underline-offset-2 hover:decoration-gray-200"
           target="_blank"
           rel="noopener noreferrer"
         >
           a single GitHub organization
         </a>{" "}
-        to streamline collaboration across the forked core, types, and
-        extension repos.
+        so the core, types, and extension repos were easier to manage together.
       </>
     ),
   },
   {
     title: "Sprint 1: Foundations",
-    body: `Our first sprint established the project's foundations. We set up our forks of Prettier and ensured seamless communication between the core, types, and extension layers. We also defined the scope for our customization features and pinpointed exactly where changes needed to be made within Prettier's source code. This initial deep dive set the stage for rapid development in subsequent sprints.`,
+    body: `Our first sprint was setup-heavy. We forked the Prettier projects, connected the core, types, and extension layers, and narrowed the first set of customization options. We also spent time reading through Prettier's source so we knew where formatting changes would need to happen.`,
   },
   {
     title: "Sprint 2: Initial Customizations",
-    body: `With our repos integrated and foundational work complete, we implemented the first batch of customization options. These included straightforward yet impactful toggles, such as line breaks before braces (Allman style) or before else statements. We maintained momentum by updating Jira storyboards, conducting regular scrums, and emphasizing pair programming and thorough pull request reviews to keep code quality high.`,
+    body: `With the repositories connected, we implemented the first formatting toggles. Those included options such as Allman-style braces and line breaks before else statements. We kept the work moving with Jira boards, regular scrums, pair programming, and pull request reviews.`,
   },
   {
     title: "Sprint 3: Readability Prep",
-    body: `Sprint 3 focused on groundwork for our Readability Analysis feature. Over spring break, we divided research tasks among the team. Some members examined readability metrics, while others, myself included, began creating a pipeline to extract relevant data directly from active files in the editor. Although technically challenging, this pipeline became essential infrastructure for our more advanced readability features.`,
+    body: `Sprint 3 focused on the readability analyzer. Over spring break, we split the research work across the team. Some members looked into readability metrics, while I worked on extracting useful data from the active file in VS Code. That pipeline became the base for the analyzer.`,
   },
   {
     title: "Sprint 4: Readability Analysis",
-    body: `Utilizing our earlier research, we fully developed the Readability Analysis tool. We implemented logic to collect metrics like line length, identifier density, and nesting depth, all backed by empirical evidence. These metrics were then tied to user-defined thresholds within VS Code settings. When triggered, our tool generated a detailed report highlighting any readability issues and providing actionable suggestions, representing a significant collaborative achievement for our team.`,
+    body: `We then built the readability report itself. The extension collected metrics such as line length, identifier density, and nesting depth, then compared them against thresholds from the user's VS Code settings. Running the command produced a report showing which parts of the file were likely to be harder to read.`,
   },
   {
     title: "Finalizing the Project",
-    body: `In the final sprint, we shifted focus to refinement and polish. We created automated tests to ensure our customization didn't disrupt existing Prettier functionality, conducted usability tests to gather early feedback, and thoroughly reviewed, documented, and cleaned up our codebase. This stage underscored the critical importance of testing, code clarity, and documentation, particularly in collaborative environments with tight deadlines.`,
+    body: `In the final sprint, we focused on testing, documentation, and cleanup. We added automated tests around the formatting changes, ran usability checks, and reviewed the codebase before packaging the extension.`,
   },
   {
     title: "Publishing & Showcase",
-    body: `Our final goal was to successfully publish Prettier-er on the VS Code marketplace, which was a milestone surprisingly few teams reached. We documented the publishing process thoroughly, addressed minor bugs, and packaged the extension professionally. At the live project showcase, we demonstrated Prettier-er's capabilities and received overwhelmingly positive feedback for its practical value, completeness, and presentation quality. Ultimately, Prettier-er was a clear success, both as a software product and as an example of effective teamwork and execution.`,
+    body: `The last step was publishing Prettier-er to the VS Code Marketplace. We documented the publishing process, fixed the last small bugs we found, and packaged the extension for release. At the project showcase, we demonstrated the formatter, the VS Code settings, and the readability report.`,
   },
 ];
 
