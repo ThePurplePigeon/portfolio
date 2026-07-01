@@ -74,8 +74,7 @@ export default function Home() {
           </h3>
           <p className="text-gray-200 leading-relaxed sm:leading-normal">
             <span>CompTIA A+ ce certified and looking</span>{" "}
-            <span className="sm:block">for full-time IT and software engineering positions.</span>{" "}
-            <span className="sm:block">Working on a mobile formatting pass for this website.</span>
+            <span className="sm:block">for full-time IT and software engineering positions.</span>
           </p>
         </div>
 
@@ -86,7 +85,7 @@ export default function Home() {
               alt="CompTIA A+ ce certification logo"
               width={80}
               height={80}
-              className="h-20 w-20 object-contain"
+              className="h-auto w-20 object-contain"
             />
           </div>
           <div>

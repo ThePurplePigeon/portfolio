@@ -247,7 +247,7 @@ export default function About() {
                 alt="CompTIA A+ ce certification logo"
                 width={120}
                 height={120}
-                className="h-full w-full object-contain"
+                className="h-auto w-full object-contain"
               />
             </div>
 
