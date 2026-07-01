@@ -1,8 +1,5 @@
-"use client";
-
 import Link from "next/link";
 import Image from "next/image";
-import { motion } from "framer-motion";
 import {
   FaDatabase,
   FaChartLine,
@@ -14,40 +11,40 @@ import {
 
 export default function ScdbShowcase() {
   return (
-    <main
-      className="bg-gray-900 text-white min-h-screen p-8"
-    >
-      <section className="max-w-5xl mx-auto space-y-12">
-        <motion.section
-          className="bg-gray-800/95 rounded-lg px-6 py-8 shadow-lg flex items-center gap-6"
-          initial={false}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-        >
+    <main className="min-h-screen bg-gray-900 p-4 text-white sm:p-8">
+      <section className="mx-auto max-w-5xl space-y-8 sm:space-y-12">
+        <section className="flex items-center gap-6 rounded-lg bg-gray-800/95 px-5 py-6 shadow-lg sm:px-6 sm:py-8">
           <div className="flex-1">
-            <h1 className="text-3xl md:text-4xl font-bold tracking-tight">
+            <p className="text-sm font-semibold text-purple-300">
+              Supreme Court data explorer
+            </p>
+            <h1 className="text-3xl font-bold tracking-tight md:text-4xl">
               SCDB Trend Explorer
             </h1>
-            <p className="text-gray-300 mt-2">
+            <p className="mt-2 text-gray-300">
               Built as part of an Introduction to Database Systems course, this project is a database and web app for analyzing trends in the Supreme Court Database (SCDB).
             </p>
           </div>
 
           <Image
             src="/scdb_header.svg"
-            alt="Intro illustration"
+            alt="Supreme Court data visualization illustration"
             width={180}
             height={110}
-            className="hidden md:block rounded-md object-cover ring-1 ring-gray-700/60"
+            className="hidden rounded-md object-cover ring-1 ring-gray-700/60 md:block"
             priority
           />
-        </motion.section>
+        </section>
 
-        <section className="py-14 bg-gray-800 rounded-lg shadow-lg">
-          <div className="px-6 space-y-6">
-            <div className="flex items-center gap-3 border-b border-blue-500 pb-2">
-              <FaGavel className="text-blue-400 text-3xl" />
-              <h2 className="text-2xl font-semibold">Description</h2>
+        <section className="rounded-lg bg-gray-800 p-5 shadow-lg sm:p-8">
+          <div className="space-y-5 sm:space-y-6">
+            <div className="flex items-start gap-3 border-b border-blue-500 pb-2 sm:items-center">
+              <FaGavel
+                aria-hidden="true"
+                focusable="false"
+                className="shrink-0 text-2xl text-blue-400 sm:text-3xl"
+              />
+              <h2 className="text-xl font-semibold sm:text-2xl">Description</h2>
             </div>
 
             <p className="text-gray-300 leading-relaxed">
@@ -62,7 +59,7 @@ export default function ScdbShowcase() {
             <p className="text-gray-300 leading-relaxed">
               The project spanned the entire semester and was broken down into several major tasks. We needed to:
             </p>
-            <ul className="list-disc list-inside text-gray-300 space-y-2">
+            <ul className="list-disc space-y-2 pl-5 text-gray-300">
               <li>Convert the SCDB CSV files into SQL insert commands</li>
               <li>Design a relational schema to support complex trend queries</li>
               <li>Write and test those queries</li>
@@ -77,25 +74,24 @@ export default function ScdbShowcase() {
           </div>
         </section>
 
-        <motion.section
-          className="bg-gray-700 p-8 rounded-lg shadow-lg border-l-4 border-purple-500"
-          initial={false}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-        >
-          <div className="flex items-center gap-3 mb-4 pb-2 border-b border-purple-500">
-            <FaCodeBranch className="text-purple-400 text-3xl" />
-            <h3 className="text-2xl font-semibold">My Role</h3>
+        <section className="rounded-lg border-l-4 border-purple-500 bg-gray-700 p-5 shadow-lg sm:p-8">
+          <div className="mb-4 flex items-start gap-3 border-b border-purple-500 pb-2 sm:items-center">
+            <FaCodeBranch
+              aria-hidden="true"
+              focusable="false"
+              className="shrink-0 text-2xl text-purple-400 sm:text-3xl"
+            />
+            <h2 className="text-xl font-semibold sm:text-2xl">My Role</h2>
           </div>
-          <div className="px-6 space-y-6">
+          <div className="space-y-5 sm:space-y-6 sm:px-6">
             <p className="text-gray-300 leading-relaxed">
               My main responsibilities were designing the relational schema for the database and converting the SCDB CSV files into SQL insert commands.
             </p>
             <p className="text-gray-300 leading-relaxed">
-              I started by designing the schema itself. We chose to focus on the “vote” CSVs from the SCDB, where each row represents a single justice's vote on a single case. This helped us easily reach the minimum tuple count, but more importantly, gave us the flexibility for complex trend queries.
+              I started by designing the schema itself. We chose to focus on the "vote" CSVs from the SCDB, where each row represents a single justice's vote on a single case. This helped us easily reach the minimum tuple count, but more importantly, gave us the flexibility for complex trend queries.
             </p>
             <p className="text-gray-300 leading-relaxed">
-              One key detail in the SCDB is its “ideology” value: either 2 (Liberal) or 1 (Conservative) for each decision. Because of how I structured our tables, we were able to make full use of this in our queries.
+              One key detail in the SCDB is its "ideology" value: either 2 (Liberal) or 1 (Conservative) for each decision. Because of how I structured our tables, we were able to make full use of this in our queries.
             </p>
             <p className="text-gray-300 leading-relaxed">
               Once the schema was in place, I wrote a Python script to parse each row of the CSVs and generate the corresponding insert commands. This was my first major challenge on the project.
@@ -114,10 +110,14 @@ export default function ScdbShowcase() {
             </p>
           </div>
 
-          <div className="mt-4 rounded-lg bg-purple-700/15 p-5 ring-1 ring-purple-600/30 space-y-6">
-            <div className="flex items-center gap-2 mb-2">
-              <FaBug className="text-purple-300 text-xl" />
-              <h4 className="text-lg font-semibold text-purple-200">Deadline Adaption</h4>
+          <div className="mt-5 space-y-4 rounded-lg bg-purple-700/15 p-4 ring-1 ring-purple-600/30 sm:mt-4 sm:space-y-6 sm:p-5">
+            <div className="mb-2 flex items-center gap-2">
+              <FaBug
+                aria-hidden="true"
+                focusable="false"
+                className="text-xl text-purple-300"
+              />
+              <h3 className="text-lg font-semibold text-purple-200">Deadline Adaptation</h3>
             </div>
             <p className="text-gray-200 leading-relaxed">
               As the demo deadline crept closer, we hit a serious roadblock with API integration the night before. We could connect and ping the database, but the API simply refused to cooperate with the frontend. Most of my teammates had early classes, so by late night it was just me and one other teammate left to keep working.
@@ -130,27 +130,26 @@ export default function ScdbShowcase() {
             </p>
           </div>
 
-        </motion.section>
+        </section>
 
-        <motion.section
-          className="space-y-10"
-          initial={false}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-        >
-          <h2 className="text-3xl font-semibold text-center bg-white/25 px-4 py-2 rounded-xl inline-block shadow-md backdrop-blur">
+        <section className="space-y-8 sm:space-y-10">
+          <h2 className="mx-auto block w-fit rounded-xl bg-white/25 px-4 py-2 text-center text-2xl font-semibold shadow-md backdrop-blur sm:text-3xl">
             Core Accomplishments
           </h2>
 
-          <div className="flex items-start gap-5">
-            <span className="flex-shrink-0 h-12 w-12 rounded-full bg-purple-700/30 flex items-center justify-center">
-              <FaDatabase className="text-purple-300 text-2xl" />
+          <div className="flex items-start gap-3 sm:gap-5">
+            <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-purple-700/30 sm:h-12 sm:w-12">
+              <FaDatabase
+                aria-hidden="true"
+                focusable="false"
+                className="text-xl text-purple-300 sm:text-2xl"
+              />
             </span>
 
-            <div className="flex-1 space-y-4">
-              <h4 className="text-xl font-semibold text-purple-200">
+            <div className="min-w-0 flex-1 space-y-4">
+              <h3 className="text-xl font-semibold text-purple-200">
                 Python ETL
-              </h4>
+              </h3>
               <p className="text-gray-300 leading-relaxed">
                 Most of my work on this project centered on data preparation, especially writing the Python script that converted SCDB CSV files into SQL insert commands.
               </p>
@@ -158,7 +157,7 @@ export default function ScdbShowcase() {
                 My script handled two main tasks: generating all the insert commands and producing a file with the create table commands for our custom schema. As I worked, the script evolved; each time I learned more about the data, I updated the schema and the corresponding commands. This process led to a pretty complex implementation, with plenty of alter table commands to support compound and foreign keys as the project progressed.
               </p>
               <p className="text-gray-300 leading-relaxed">
-                The insert commands required some creativity. Because the CSVs were vote-based—each row represented a single justice's vote—there were many repeated values like case ID or docket ID. To avoid duplicate entries, I used sets to check if each related value was unique before creating a new insert command. For some fields, like new justices or courts, I added additional logic to handle those cases specifically. Once everything was verified, the insert was added to the output, and the script continued down the rows.
+                The insert commands required some creativity. Because the CSVs were vote-based, with each row representing a single justice's vote, there were many repeated values like case ID or docket ID. To avoid duplicate entries, I used sets to check if each related value was unique before creating a new insert command. For some fields, like new justices or courts, I added additional logic to handle those cases specifically. Once everything was verified, the insert was added to the output, and the script continued down the rows.
               </p>
               <p className="text-gray-300 leading-relaxed">
                 I also had to do quite a bit of input validation, since the SCDB data wasn't always consistent or in a format Oracle would accept. I built helper functions for everything from date parsing to numeric formatting, as well as a general clean_field function for handling nulls, NaNs, empty strings, and any other oddities that showed up in the CSVs.
@@ -170,15 +169,19 @@ export default function ScdbShowcase() {
             </div>
           </div>
 
-          <div className="flex items-start gap-5">
-            <span className="flex-shrink-0 h-12 w-12 rounded-full bg-purple-700/30 flex items-center justify-center">
-              <FaChartLine className="text-purple-300 text-2xl" />
+          <div className="flex items-start gap-3 sm:gap-5">
+            <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-purple-700/30 sm:h-12 sm:w-12">
+              <FaChartLine
+                aria-hidden="true"
+                focusable="false"
+                className="text-xl text-purple-300 sm:text-2xl"
+              />
             </span>
 
-            <div className="flex-1 space-y-4">
-              <h4 className="text-xl font-semibold text-purple-200">
+            <div className="min-w-0 flex-1 space-y-4">
+              <h3 className="text-xl font-semibold text-purple-200">
                 Trend Queries
-              </h4>
+              </h3>
               <p className="text-gray-300 leading-relaxed">
                 Working on the trend queries was genuinely fascinating for me. As someone who's always been a bit of a politics nerd, seeing the Supreme Court's history unfold through the data, and being able to analyze it in new ways, made the hard work to get everything running feel especially rewarding.
               </p>
@@ -190,23 +193,20 @@ export default function ScdbShowcase() {
               </p>
             </div>
           </div>
-        </motion.section>
-
-
-        <motion.section
-          className="bg-gray-800 p-8 rounded-lg shadow-lg"
-          initial={false}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-        >
-          <div className="flex items-center gap-3 mb-4">
-            <FaMapSigns className="text-purple-400 text-2xl" />
-            <h3 className="text-2xl font-semibold text-purple-300">
+        </section>
+        <section className="rounded-lg bg-gray-800 p-5 shadow-lg sm:p-8">
+          <div className="mb-4 flex items-start gap-3 sm:items-center">
+            <FaMapSigns
+              aria-hidden="true"
+              focusable="false"
+              className="shrink-0 text-2xl text-purple-400"
+            />
+            <h2 className="text-xl font-semibold text-purple-300 sm:text-2xl">
               Challenges & Lessons
-            </h3>
+            </h2>
           </div>
 
-          <div className="space-y-2">
+          <div className="space-y-4 sm:space-y-2">
             <p className="text-gray-300 leading-relaxed">
               This project was a true team effort. With such a full-stack application, every member brought something different to the table, and having that diversity of skills was essential to our success. Even when I had to step in and help move things forward, I always built on the groundwork laid by my teammates. There was never a moment where anyone was completely on their own; we supported each other throughout.
             </p>
@@ -216,27 +216,20 @@ export default function ScdbShowcase() {
             <p className="text-gray-300 leading-relaxed">
               Just as important were the lessons in teamwork and collaboration. Balancing individual contributions with group deadlines, stepping up to help wherever needed, and communicating clearly were every bit as critical as any technical decision. Those habits: clear communication, adaptability, and a willingness to pitch in, are things I've carried into every project since.
             </p>
-
-
           </div>
-        </motion.section>
+        </section>
 
-        <motion.section
-          className="text-center"
-          initial={false}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-        >
+        <section className="text-center">
           <Link
             href="http://scdb.wustl.edu"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-block px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-full font-semibold hover:shadow-lg transition-transform duration-150 hover:scale-105"
+            className="inline-block rounded-full bg-gradient-to-r from-blue-500 to-purple-500 px-5 py-3 text-sm font-semibold text-white transition-transform duration-150 hover:scale-105 hover:shadow-lg sm:px-6 sm:text-base"
           >
             Explore the Supreme Court Database
           </Link>
-          <span className="block text-gray-400 mt-1">SCDB is the official source for the data behind this project.</span>
-        </motion.section>
+          <span className="mt-2 block text-sm text-gray-400 sm:mt-1 sm:text-base">SCDB is the official source for the data behind this project.</span>
+        </section>
       </section>
     </main>
   );

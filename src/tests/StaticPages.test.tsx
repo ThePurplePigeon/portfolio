@@ -1,5 +1,6 @@
-import React from 'react';
-import { render, screen } from '@testing-library/react';
+import type { ReactNode } from 'react';
+import { render, screen, waitFor } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom';
 
 import Home from '@/app/page';
@@ -11,40 +12,56 @@ import Tasker from '@/app/projects/tasker/page';
 import Scdb from '@/app/projects/scdb-database-trends/page';
 import NotFound from '@/app/not-found';
 
+type MotionMockProps = {
+    children?: ReactNode;
+    [key: string]: unknown;
+};
+
 jest.mock('framer-motion', () => {
-  const React = require('react');
+    const React = require('react');
 
-  const MOTION_PROPS = new Set([
-    'initial',
-    'animate',
-    'whileInView',
-    'exit',
-    'variants',
-    'transition',
-    'viewport',
-    'onViewportEnter',
-    'onViewportLeave',
-  ]);
+    const MOTION_PROPS = new Set([
+        'initial',
+        'animate',
+        'whileInView',
+        'exit',
+        'variants',
+        'transition',
+        'viewport',
+        'onViewportEnter',
+        'onViewportLeave',
+    ]);
 
-  const makeMock = (tag: string) => {
-    const MockComponent = ({ children, ...rest }: any) =>
-      React.createElement(
-        tag,
-        Object.fromEntries(
-          Object.entries(rest).filter(([key]) => !MOTION_PROPS.has(key))
-        ),
-        children
-      );
-    MockComponent.displayName = `Mock(${tag})`;
-    return MockComponent;
-  };
+    const makeMock = (tag: string) => {
+        const MockComponent = ({ children, ...rest }: MotionMockProps) =>
+            React.createElement(
+                tag,
+                Object.fromEntries(
+                    Object.entries(rest).filter(([key]) => !MOTION_PROPS.has(key))
+                ),
+                children
+            );
+        MockComponent.displayName = `Mock(${tag})`;
+        return MockComponent;
+    };
 
-  const handler = { get: (_: unknown, tag: string) => makeMock(tag) };
+    const mockComponents = new Map<string, ReturnType<typeof makeMock>>();
+    const handler: ProxyHandler<Record<string, unknown>> = {
+        get: (_target, tag) => {
+            const tagName = String(tag);
+            let MockComponent = mockComponents.get(tagName);
+            if (!MockComponent) {
+                MockComponent = makeMock(tagName);
+                mockComponents.set(tagName, MockComponent);
+            }
+            return MockComponent;
+        },
+    };
 
-  return {
-    motion: new Proxy({}, handler),          // <motion.div>, <motion.h1>, …
-    AnimatePresence: ({ children }: any) => <>{children}</>,
-  };
+    return {
+        motion: new Proxy({}, handler),
+        AnimatePresence: ({ children }: { children?: ReactNode }) => <>{children}</>,
+    };
 });
 
 const pages = [
@@ -61,13 +78,11 @@ const pages = [
 describe('Static pages render', () => {
     pages.forEach(({ component: Component, heading, level }) => {
         test(`${Component.name} renders without crashing`, () => {
-        render(<Component />);
-        const opts: any = { name: heading };
-        if (typeof level === 'number') {
-            opts.level = level;
-        }
-        const h = screen.getByRole('heading', opts);
-        expect(h).toBeInTheDocument();
+            render(<Component />);
+            const h = typeof level === 'number'
+                ? screen.getByRole('heading', { name: heading, level })
+                : screen.getByRole('heading', { name: heading });
+            expect(h).toBeInTheDocument();
         });
     });
 });
@@ -98,5 +113,33 @@ describe('Certification content', () => {
             'href',
             'https://cp.certmetrics.com/CompTIA/en/public/verify/credential/afad4807cf364e85976d4b301882acdc'
         );
+    });
+});
+
+describe('Prettier-er project page interactions', () => {
+    test('opens and closes the screenshot preview from the hero image', async () => {
+        const user = userEvent.setup();
+        render(<Prettier />);
+        const openButton = screen.getByRole('button', {
+            name: /open larger preview: custom formatting preview/i,
+        });
+
+        await user.click(openButton);
+
+        expect(
+            screen.getByRole('dialog', { name: /prettier-er custom \(all settings enabled\)/i })
+        ).toBeInTheDocument();
+        const closeButton = screen.getByRole('button', { name: /^close$/i });
+        await waitFor(() => expect(closeButton).toHaveFocus());
+        expect(document.body).toHaveStyle({ overflow: 'hidden' });
+
+        await user.keyboard('{Tab}');
+        expect(closeButton).toHaveFocus();
+
+        await user.click(closeButton);
+
+        expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
+        expect(document.body.style.overflow).toBe('');
+        await waitFor(() => expect(openButton).toHaveFocus());
     });
 });

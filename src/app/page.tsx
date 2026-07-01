@@ -1,10 +1,9 @@
-"use client";
-
-import { ReactTyped } from 'react-typed'
 import Image from 'next/image'
 import Link from 'next/link'
 import { FaReact, FaPython, FaJava, FaGithub, FaGraduationCap, FaMapMarkerAlt, FaCertificate } from "react-icons/fa";
 import { SiQt, SiCplusplus, SiJavascript, SiTypescript, SiUnrealengine, SiUnity } from "react-icons/si";
+import TypedRoles from "@/components/TypedRoles";
+import { projectSummaries } from "@/data/projects";
 
 
 export default function Home() {
@@ -16,29 +15,17 @@ export default function Home() {
           alt="Picture of Joshua"
           width={200}
           height={200}
+          priority
           className="rounded-full border-4 border-purple-400 shadow-lg mb-4"
         />
-        <h1 className="text-5xl font-bold mb-2">Hello, I'm Joshua</h1>
-        <ReactTyped
-          className="mb-3 text-xl text-gray-400"
-          strings={[
-            "C++ Apologist",
-            "Full-Stack Developer",
-            "Software Engineer",
-            "Aspiring Game Developer"
-          ]}
-          cursorChar="_"
-          typeSpeed={40}
-          backSpeed={60}
-          backDelay={2000}
-          loop
-        />
-        <a
+        <h1 className="text-center text-4xl font-bold mb-2 sm:text-5xl">Hello, I'm Joshua</h1>
+        <TypedRoles />
+        <Link
           href="/projects"
           className="inline-block px-6 py-2 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full text-white font-semibold shadow-lg mt-4 transition-transform transform duration-150 hover:scale-105 hover:shadow-[0_0_10px_3px_rgba(138,43,226,0.8)]"
         >
           View My Work
-        </a>
+        </Link>
       </section>
 
       <section className="max-w-3xl mx-auto flex flex-wrap justify-center gap-3 py-4 mb-3">
@@ -81,14 +68,14 @@ export default function Home() {
       </section>
 
       <section className="max-w-3xl mx-auto text-center mt-4 mb-6 px-4">
-        <div className="inline-block bg-gray-800/90 rounded-xl px-6 py-4 shadow-md border border-purple-500/30">
+        <div className="inline-block w-full max-w-2xl bg-gray-800/90 rounded-xl px-6 py-4 shadow-md border border-purple-500/30 sm:w-auto">
           <h3 className="text-lg font-semibold mb-1 text-purple-300">
             Currently Focusing On
           </h3>
-          <p className="text-gray-200">
-            CompTIA A+ ce certified and looking<br />
-            for full-time IT and software engineering positions. <br />
-            Working on a mobile formatting pass for this website.
+          <p className="text-gray-200 leading-relaxed sm:leading-normal">
+            <span>CompTIA A+ ce certified and looking</span>{" "}
+            <span className="sm:block">for full-time IT and software engineering positions.</span>{" "}
+            <span className="sm:block">Working on a mobile formatting pass for this website.</span>
           </p>
         </div>
 
@@ -119,14 +106,14 @@ export default function Home() {
           <h2 className="text-2xl md:text-3xl font-semibold text-white mb-2">
             Who am I?
           </h2>
-          <p className="text-lg text-gray-300 max-w-2xl mx-auto">
-            I'm a software developer with a love for <span className="text-purple-400 font-semibold">user-focused design</span> and writing <span className="text-blue-400 font-semibold">clean, maintainable code</span>. Whether building desktop, web, or data-driven projects, I care about code that's both practical and a joy to work with.
+          <p className="text-base leading-relaxed text-center text-gray-300 max-w-2xl mx-auto sm:text-lg sm:leading-7">
+            I'm a software developer with a love for user-focused design and writing clean, maintainable code. Whether building desktop, web, or data-driven projects, I care about code that's both practical and a joy to work with.
           </p>
-          <p className="text-lg text-gray-300 max-w-2xl mx-auto">
+          <p className="text-base leading-relaxed text-center text-gray-300 max-w-2xl mx-auto sm:text-lg sm:leading-7">
             Outside of code, I thrive on learning new frameworks, exploring how technology shapes our lives, and collaborating with people who challenge me to be a better man. I believe great software isn't just about what it does, but how it feels to build and use. If you want to talk shop, brainstorm, or just talk about new tech, I'm always up for a conversation.
           </p>
 
-          <a
+          <Link
             href="/about"
             className="
               inline-block
@@ -148,7 +135,7 @@ export default function Home() {
             "
           >
             Learn More About Me
-          </a>
+          </Link>
         </div>
       </section>
 
@@ -157,55 +144,28 @@ export default function Home() {
         <h2 className="text-3xl font-bold text-center mb-6">Featured Projects</h2>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-          {[
-            {
-              title: "Prettier-er",
-              tagline: "Customizable VS Code formatter",
-              desc: "A VS Code extension enhancing Prettier with custom preferences and code readability metrics.",
-              tech: ["JavaScript", "TypeScript", "VS Code Ext. API"],
-              link: "/projects/prettier-er",
-              img: "/prettier-er.png"
-            },
-            {
-              title: "Tasker",
-              tagline: "Academic To-Do Manager",
-              desc: "Qt-based task manager for students, with .ics calendar import and metadata-driven task lists.",
-              tech: ["C++", "Qt", "Visual Studio"],
-              link: "/projects/tasker",
-              img: "/tasker.png"
-            },
-            {
-              title: "SCDB Trends",
-              tagline: "Supreme Court Data Visualization",
-              desc: "Python/SQL web app for querying and visualizing Supreme Court Database trends interactively.",
-              tech: ["Go", "Python", "SQL", "HTML", "JavaScript"],
-              link: "/projects/scdb-database-trends",
-              img: "/scdb_home.png"
-            },
-          ].map((proj) => (
-            <div key={proj.title} className="bg-gray-800 p-4 rounded-xl shadow hover:shadow-xl transition group flex flex-col items-start">
-              {proj.img && (
-                <Image
-                  src={proj.img}
-                  alt={`${proj.title} logo`}
-                  width={56}
-                  height={56}
-                  className="mb-2 rounded shadow-lg object-contain"
-                />
-              )}
-              <h3 className="text-xl font-semibold mb-1 group-hover:text-purple-400 transition">{proj.title}</h3>
-              <p className="text-sm italic text-gray-400 mb-2">{proj.tagline}</p>
-              <p className="text-gray-300 text-sm flex-1">{proj.desc}</p>
+          {projectSummaries.map((project) => (
+            <div key={project.id} className="bg-gray-800 p-4 rounded-xl shadow hover:shadow-xl transition group flex flex-col items-start">
+              <Image
+                src={project.homeImage}
+                alt={`${project.homeTitle} logo`}
+                width={56}
+                height={56}
+                className="mb-2 rounded shadow-lg object-contain"
+              />
+              <h3 className="text-xl font-semibold mb-1 group-hover:text-purple-400 transition">{project.homeTitle}</h3>
+              <p className="text-sm italic text-gray-400 mb-2">{project.homeTagline}</p>
+              <p className="text-gray-300 text-sm flex-1">{project.shortDescription}</p>
               <div className="flex flex-wrap gap-2 mt-3">
-                {proj.tech.map((t) => (
-                  <span key={t} className="bg-gray-700 text-xs px-2 py-1 rounded text-purple-300">{t}</span>
+                {project.tech.map((tech) => (
+                  <span key={tech} className="bg-gray-700 text-xs px-2 py-1 rounded text-purple-300">{tech}</span>
                 ))}
               </div>
               <Link
-                href={proj.link}
-                className="inline-block mt-3 text-blue-400 hover:underline font-semibold"
+                href={project.link}
+                className="inline-flex min-h-10 items-center mt-3 text-blue-400 hover:underline font-semibold sm:min-h-0"
               >
-                View Project →
+                View Project &rarr;
               </Link>
             </div>
           ))}
@@ -226,12 +186,12 @@ export default function Home() {
 
       <section className="bg-gray-900 p-6 text-center border-t border-gray-700">
         <h2 className="text-2xl font-bold mb-2">Want to chat?</h2>
-        <a
+        <Link
           href="/contact"
           className="inline-block px-6 py-2 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full text-white font-semibold shadow-lg transition-transform transform duration-150 hover:scale-105 hover:shadow-[0_0_10px_3px_rgba(138,43,226,0.8)]"
         >
           Let's Talk
-        </a>
+        </Link>
       </section>
 
 
