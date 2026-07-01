@@ -1,7 +1,4 @@
-"use client";
-
 import Image from "next/image";
-import { motion } from "framer-motion";
 import { FaTasks, FaCalendarAlt, FaCode, FaClipboardList } from "react-icons/fa";
 
 const sectionCardClasses =
@@ -21,12 +18,7 @@ export default function TaskerShowcase() {
     <main className="min-h-screen bg-gray-900 p-4 text-white sm:p-8 md:bg-[url('/tasker/tasker_background.png')] md:bg-cover md:bg-center md:bg-fixed">
       <div className="mx-auto max-w-5xl space-y-8 sm:space-y-12">
         <section className="overflow-hidden rounded-lg bg-gray-800/95 shadow-lg ring-1 ring-white/10">
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.45 }}
-            className="grid gap-6 p-5 sm:p-8 md:grid-cols-[minmax(0,1fr)_minmax(280px,420px)] md:items-center"
-          >
+          <div className="grid gap-6 p-5 sm:p-8 md:grid-cols-[minmax(0,1fr)_minmax(280px,420px)] md:items-center">
             <div className="space-y-4 text-center md:text-left">
               <p className="text-sm font-semibold text-purple-300">
                 Qt desktop productivity app
@@ -62,7 +54,7 @@ export default function TaskerShowcase() {
                 priority
               />
             </div>
-          </motion.div>
+          </div>
         </section>
 
         <section className={sectionCardClasses}>

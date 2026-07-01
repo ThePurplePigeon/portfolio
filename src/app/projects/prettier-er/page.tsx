@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import Timeline from "@/app/projects/components/Timeline";
@@ -106,7 +106,28 @@ const cardMotion = {
 export default function PrettierErShowcase() {
   const [previewIndex, setPreviewIndex] = useState<number | null>(null);
   const closePreviewButtonRef = useRef<HTMLButtonElement>(null);
+  const previewDialogRef = useRef<HTMLDivElement>(null);
+  const previewTriggerRef = useRef<HTMLButtonElement | null>(null);
   const preview = previewIndex === null ? null : screenshots[previewIndex];
+
+  const openPreview = (index: number, trigger: HTMLButtonElement) => {
+    previewTriggerRef.current = trigger;
+    setPreviewIndex(index);
+  };
+
+  const restorePreviewFocus = useCallback(() => {
+    const trigger = previewTriggerRef.current;
+    window.setTimeout(() => {
+      if (trigger?.isConnected) {
+        trigger.focus();
+      }
+    }, 0);
+  }, []);
+
+  const closePreview = useCallback(() => {
+    setPreviewIndex(null);
+    restorePreviewFocus();
+  }, [restorePreviewFocus]);
 
   useEffect(() => {
     if (previewIndex === null) {
@@ -116,7 +137,37 @@ export default function PrettierErShowcase() {
     const previousOverflow = document.body.style.overflow;
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
-        setPreviewIndex(null);
+        closePreview();
+        return;
+      }
+
+      if (event.key !== "Tab") {
+        return;
+      }
+
+      const dialog = previewDialogRef.current;
+      if (!dialog) {
+        return;
+      }
+
+      const focusableElements = dialog.querySelectorAll<HTMLElement>(
+        'a[href], button:not([disabled]), input:not([disabled]), textarea:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])'
+      );
+
+      if (focusableElements.length === 0) {
+        event.preventDefault();
+        return;
+      }
+
+      const firstElement = focusableElements[0];
+      const lastElement = focusableElements[focusableElements.length - 1];
+
+      if (event.shiftKey && document.activeElement === firstElement) {
+        event.preventDefault();
+        lastElement.focus();
+      } else if (!event.shiftKey && document.activeElement === lastElement) {
+        event.preventDefault();
+        firstElement.focus();
       }
     };
 
@@ -128,7 +179,7 @@ export default function PrettierErShowcase() {
       document.body.style.overflow = previousOverflow;
       window.removeEventListener("keydown", handleKeyDown);
     };
-  }, [previewIndex]);
+  }, [closePreview, previewIndex]);
 
   return (
     <main className="min-h-screen bg-gray-900 p-4 text-white sm:p-8 md:bg-[url('/prettier-er/prettierer_background.png')] md:bg-cover md:bg-center md:bg-fixed">
@@ -216,7 +267,7 @@ export default function PrettierErShowcase() {
               <button
                 type="button"
                 aria-label="Open larger preview: custom formatting preview"
-                onClick={() => setPreviewIndex(heroPreviewIndex)}
+                onClick={(event) => openPreview(heroPreviewIndex, event.currentTarget)}
                 className="group flex w-full cursor-zoom-in items-center justify-center rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-300"
               >
                 <Image
@@ -352,7 +403,7 @@ export default function PrettierErShowcase() {
                 <button
                   type="button"
                   aria-label={`Open larger preview: ${label}`}
-                  onClick={() => setPreviewIndex(index)}
+                  onClick={(event) => openPreview(index, event.currentTarget)}
                   className="group flex h-72 w-full cursor-zoom-in items-center justify-center rounded-lg bg-gray-950/75 p-3 shadow-lg ring-1 ring-white/10 transition hover:ring-purple-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-300 sm:h-80 md:h-72"
                 >
                   <Image
@@ -448,10 +499,11 @@ export default function PrettierErShowcase() {
               type="button"
               aria-label="Close screenshot preview"
               className="absolute inset-0 cursor-default bg-black/85"
-              onClick={() => setPreviewIndex(null)}
+              onClick={closePreview}
             />
 
             <motion.div
+              ref={previewDialogRef}
               role="dialog"
               aria-modal="true"
               aria-labelledby="screenshot-preview-title"
@@ -471,7 +523,7 @@ export default function PrettierErShowcase() {
                 <button
                   type="button"
                   ref={closePreviewButtonRef}
-                  onClick={() => setPreviewIndex(null)}
+                  onClick={closePreview}
                   className="inline-flex min-h-10 items-center justify-center rounded-md bg-gray-800 px-3 text-sm font-semibold text-gray-100 transition hover:bg-gray-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-300"
                 >
                   Close

@@ -1,5 +1,3 @@
-"use client";
-
 import { FaChartBar, FaSlidersH } from "react-icons/fa";
 
 const toggles = [

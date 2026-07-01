@@ -39,6 +39,16 @@ const courses = [
   },
 ] as const;
 
+const languageSkills = ["C++", "C#", "Java", "Python", "JavaScript", "TypeScript", "SQL"] as const;
+const frameworkSkills = ["React", "Qt", "Unreal", "Unity"] as const;
+const toolSkills = ["GitHub", "Jira", "MATLAB", "VS Code", "Visual Studio"] as const;
+const methodologySkills = ["Agile", "Unit Testing", "CI/CD", "Usability Testing"] as const;
+
+const sectionPanelClasses =
+  "bg-gray-800 p-3 rounded-xl shadow-lg shadow-purple-700/20 relative overflow-hidden sm:p-6";
+const skillCardClasses = "bg-gray-900 p-4 rounded-lg shadow-md";
+const skillChipClasses = "bg-gray-700 px-3 py-1 rounded text-sm text-gray-300";
+
 export default function About() {
   const [currentCourse, setCurrentCourse] = useState(0);
   const [autoScroll, setAutoScroll] = useState(true);
@@ -102,7 +112,7 @@ export default function About() {
           </div>
         </section>
 
-        <section className="bg-gray-800 p-3 rounded-xl shadow-lg space-y-4 shadow-purple-700/20 relative overflow-hidden sm:p-6">
+        <section className={`${sectionPanelClasses} space-y-4`}>
           <h2 className="text-3xl font-bold flex items-center">
             <FaUniversity className="text-blue-500 mr-3" /> Education
           </h2>
@@ -219,7 +229,7 @@ export default function About() {
           </motion.div>
         </section>
 
-        <section className="bg-gray-800 p-3 rounded-xl shadow-lg space-y-4 shadow-purple-700/20 relative overflow-hidden sm:p-6">
+        <section className={`${sectionPanelClasses} space-y-4`}>
           <h2 className="text-3xl font-bold flex items-center">
             <FaCertificate className="text-blue-500 mr-3" /> Professional Certification
           </h2>
@@ -292,20 +302,20 @@ export default function About() {
           </motion.div>
         </section>
 
-        <div className="bg-gray-800 p-3 rounded-xl shadow-lg shadow-purple-700/20 relative overflow-hidden sm:p-6">
+        <div className={sectionPanelClasses}>
           <h2 className="flex items-center text-3xl font-bold mb-4">
             <FaTools className="mr-2 text-blue-500" />
             Technical Skills
           </h2>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="bg-gray-900 p-4 rounded-lg shadow-md">
+            <div className={skillCardClasses}>
               <h3 className="text-xl font-semibold text-purple-400 text-center mb-3">Languages</h3>
               <div className="flex flex-wrap justify-center gap-2">
-                {["C++","C#","Java","Python","JavaScript","TypeScript","SQL"].map(s => (
+                {languageSkills.map(s => (
                   <span
                     key={s}
-                    className="bg-gray-700 px-3 py-1 rounded text-sm text-gray-300"
+                    className={skillChipClasses}
                   >
                     {s}
                   </span>
@@ -313,13 +323,13 @@ export default function About() {
               </div>
             </div>
 
-            <div className="bg-gray-900 p-4 rounded-lg shadow-md">
+            <div className={skillCardClasses}>
               <h3 className="text-xl font-semibold text-purple-400 text-center mb-3">Frameworks & Libraries</h3>
               <div className="flex flex-wrap justify-center gap-2">
-                {["React","Qt","Unreal","Unity"].map(s => (
+                {frameworkSkills.map(s => (
                   <span
                     key={s}
-                    className="bg-gray-700 px-3 py-1 rounded text-sm text-gray-300"
+                    className={skillChipClasses}
                   >
                     {s}
                   </span>
@@ -327,13 +337,13 @@ export default function About() {
               </div>
             </div>
 
-            <div className="bg-gray-900 p-4 rounded-lg shadow-md">
+            <div className={skillCardClasses}>
               <h3 className="text-xl font-semibold text-purple-400 text-center mb-3">Tools</h3>
               <div className="flex flex-wrap justify-center gap-2">
-                {["GitHub","Jira","MATLAB","VS Code","Visual Studio"].map(s => (
+                {toolSkills.map(s => (
                   <span
                     key={s}
-                    className="bg-gray-700 px-3 py-1 rounded text-sm text-gray-300"
+                    className={skillChipClasses}
                   >
                     {s}
                   </span>
@@ -343,13 +353,13 @@ export default function About() {
           </div>
 
           <div className="mt-6 flex flex-col justify-center gap-6 sm:flex-row">
-            <div className="w-full bg-gray-900 p-4 rounded-lg shadow-md sm:w-auto">
+            <div className={`${skillCardClasses} w-full sm:w-auto`}>
               <h3 className="text-xl font-semibold text-purple-400 text-center mb-3">Methodologies</h3>
               <div className="flex flex-wrap justify-center gap-2">
-                {["Agile","Unit Testing","CI/CD","Usability Testing"].map(s => (
+                {methodologySkills.map(s => (
                   <span
                     key={s}
-                    className="bg-gray-700 px-3 py-1 rounded text-sm text-gray-300"
+                    className={skillChipClasses}
                   >
                     {s}
                   </span>
@@ -357,10 +367,10 @@ export default function About() {
               </div>
             </div>
 
-            <div className="w-full bg-gray-900 p-4 rounded-lg shadow-md sm:w-auto">
+            <div className={`${skillCardClasses} w-full sm:w-auto`}>
               <h3 className="text-xl font-semibold text-purple-400 text-center mb-3">Certifications</h3>
               <div className="flex justify-center">
-                <span className="bg-gray-700 px-3 py-1 rounded text-sm text-gray-300">
+                <span className={skillChipClasses}>
                   CompTIA A+ ce Certified
                 </span>
               </div>
@@ -373,7 +383,7 @@ export default function About() {
 
 
 
-        <div className="bg-gray-800 p-3 rounded-xl shadow-lg shadow-purple-700/20 relative overflow-hidden sm:p-6">
+        <div className={sectionPanelClasses}>
           <h2 className="flex items-center text-3xl font-bold mb-4">
             <FaUsers className="mr-2 text-blue-500" />
             Soft Skills

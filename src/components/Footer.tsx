@@ -1,4 +1,3 @@
-"use client";
 import { FaGithub, FaLinkedin, FaEnvelope } from "react-icons/fa";
 import Link from "next/link";
 
@@ -6,7 +5,7 @@ export default function Footer() {
   return (
     <footer className="w-full p-6 bg-gray-800 text-white text-center">
       <p className="text-base">
-        © {new Date().getFullYear()} Joshua Hughes. All rights reserved.
+        &copy; {new Date().getFullYear()} Joshua Hughes. All rights reserved.
       </p>
 
       <div className="flex justify-center gap-6 mt-3 mb-1">
@@ -28,13 +27,13 @@ export default function Footer() {
         >
           <FaLinkedin className="text-3xl text-white group-hover:text-purple-400 transition-all duration-150 drop-shadow" />
         </a>
-        <a
+        <Link
           href="/contact"
           aria-label="Contact"
           className="group"
         >
           <FaEnvelope className="text-3xl text-white group-hover:text-purple-400 transition-all duration-150 drop-shadow" />
-        </a>
+        </Link>
       </div>
 
       <div className="mt-3 flex justify-center flex-wrap gap-x-2 text-sm">
@@ -48,7 +47,8 @@ export default function Footer() {
       </div>
 
       <p className="mt-3 text-sm text-gray-400 italic max-w-xl mx-auto">
-        "The most important step a man can take. It's not the first one, is it? It's the next one." – Brandon Sanderson
+        "The most important step a man can take. It's not the first one, is it? It's the next one."{" "}
+        <span className="whitespace-nowrap">&ndash; Brandon Sanderson</span>
       </p>
     </footer>
   );

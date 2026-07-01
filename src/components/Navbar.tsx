@@ -6,17 +6,17 @@ import { useState, useEffect, useRef } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
 import Image from "next/image";
 
+const navItems = [
+  { name: "Home", path: "/" },
+  { name: "About", path: "/about" },
+  { name: "Projects", path: "/projects" },
+  { name: "Contact", path: "/contact" },
+] as const;
+
 export default function Navbar() {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
   const menuRef = useRef<HTMLUListElement>(null);
-
-  const navItems = [
-    { name: "Home", path: "/" },
-    { name: "About", path: "/about" },
-    { name: "Projects", path: "/projects" },
-    { name: "Contact", path: "/contact" },
-  ];
 
   useEffect(() => {
     function handleClickOutside(e: MouseEvent) {
@@ -52,8 +52,7 @@ export default function Navbar() {
             alt="JH Logo"
             width={32}
             height={32}
-            className="w-8 h-8 rounded"
-            style={{ boxShadow: "0 2px 8px 0 rgba(91, 33, 182, 0.11)" }}
+            className="w-8 h-8 rounded shadow-[0_2px_8px_0_rgba(91,33,182,0.11)]"
             priority
           />
           Joshua Hughes
@@ -61,6 +60,7 @@ export default function Navbar() {
 
 
         <button
+          type="button"
           onClick={() => setIsOpen(!isOpen)}
           aria-label="Toggle navigation menu"
           aria-expanded={isOpen}
@@ -70,12 +70,12 @@ export default function Navbar() {
           {isOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
         </button>
 
-        <ul className="hidden md:flex space-x-4" role="menubar">
+        <ul className="hidden md:flex space-x-4">
           {navItems.map((item) => (
-            <li key={item.path} role="none">
+            <li key={item.path}>
               <Link
                 href={item.path}
-                role="menuitem"
+                aria-current={pathname === item.path ? "page" : undefined}
                 className={`
                   px-3 py-1 rounded transition duration-200 focus:outline-none focus:ring-2 focus:ring-purple-500
                   ${pathname === item.path
@@ -94,14 +94,13 @@ export default function Navbar() {
         <ul
           id="mobile-menu"
           ref={menuRef}
-          role="menu"
           className="md:hidden absolute top-full left-0 w-full bg-gray-800 mt-0 space-y-2 py-2 shadow-lg"
         >
           {navItems.map((item) => (
-            <li key={item.path} role="none">
+            <li key={item.path}>
               <Link
                 href={item.path}
-                role="menuitem"
+                aria-current={pathname === item.path ? "page" : undefined}
                 onClick={() => setIsOpen(false)}
                 className={`
                   block px-4 py-2 rounded transition duration-200 focus:outline-none focus:ring-2 focus:ring-purple-500

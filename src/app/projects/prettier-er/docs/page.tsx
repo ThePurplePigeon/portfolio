@@ -1,6 +1,3 @@
-"use client"
-import { motion } from 'framer-motion'
-
 const majorSectionClasses = "space-y-10 sm:space-y-16"
 const contentSectionClasses = "max-w-5xl mx-auto mt-10 space-y-8 sm:mt-16 sm:space-y-12"
 const cardClasses = "bg-gray-800 rounded-2xl p-5 shadow-lg sm:p-8"
@@ -21,12 +18,7 @@ export default function DocsPage() {
   return (
     <div className="bg-[#0f172a] min-h-screen w-full">
       <main className="text-gray-200 py-10 px-4 sm:px-6 md:px-12 max-w-5xl mx-auto space-y-14 md:space-y-24">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="max-w-4xl text-center mx-auto"
-        >
+        <div className="max-w-4xl text-center mx-auto">
           <h1 className="text-4xl font-extrabold leading-tight sm:text-5xl md:text-6xl">
             <span className="bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">
               Prettier-er
@@ -37,7 +29,7 @@ export default function DocsPage() {
           <p className="mt-5 text-base text-gray-400 sm:mt-6 sm:text-lg">
             A technical walkthrough of how Prettier-er extends formatting behavior and evaluates readability, with implementation notes, analysis metrics, and usage examples.
           </p>
-        </motion.div>
+        </div>
 
         <section id="table-of-contents" className="mt-10 sm:mt-16">
           <h2 className="text-2xl font-bold text-purple-300 border-b border-gray-700 pb-2 mb-4">
@@ -105,13 +97,7 @@ export default function DocsPage() {
           </div>
 
           <section id="how-formatting-works" className={contentSectionClasses}>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              viewport={{ once: true }}
-              className={cardClasses}
-            >
+            <div className={cardClasses}>
               <h3 className={cardHeadingClasses}>
                 How Formatting Works
               </h3>
@@ -273,17 +259,11 @@ export default function DocsPage() {
                   </p>
                 </div>
               </section>
-            </motion.div>
+            </div>
           </section>
 
           <section id="formatting-features" className={contentSectionClasses}>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              viewport={{ once: true }}
-              className={cardClasses}
-            >
+            <div className={cardClasses}>
               <h3 className={cardHeadingClasses}>
                 Formatting Features
               </h3>
@@ -561,7 +541,7 @@ export default function DocsPage() {
                   </div>
                 </section>
               </div>
-            </motion.div>
+            </div>
           </section>
         </section>
 
@@ -606,13 +586,7 @@ export default function DocsPage() {
           </section>
 
           <section id="readability-options" className={contentSectionClasses}>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              viewport={{ once: true }}
-              className={cardClasses}
-            >
+            <div className={cardClasses}>
               <h3 className={cardHeadingClasses}>
                 Readability Analysis Options
               </h3>
@@ -686,17 +660,11 @@ export default function DocsPage() {
                   </p>
                 </section>
               </div>
-            </motion.div>
+            </div>
           </section>
 
           <section id="metric-interpretations" className={contentSectionClasses}>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              viewport={{ once: true }}
-              className={cardClasses}
-            >
+            <div className={cardClasses}>
               <h3 className={cardHeadingClasses}>
                 Interpreting Readability Metrics
               </h3>
@@ -831,7 +799,7 @@ export default function DocsPage() {
                   </div>
                 </section>
               </div>
-            </motion.div>
+            </div>
           </section>
         </section>
       </main>

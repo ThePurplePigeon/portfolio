@@ -54,6 +54,7 @@ export default function Contact() {
         setName("");
         setEmail("");
         setMessage("");
+        setWebsite("");
         setErrors({});
       } else {
         const data = await res.json();
@@ -74,9 +75,20 @@ export default function Contact() {
         <p className="text-center text-gray-400 mb-6">
           I'd love to hear from you! Fill out the form below to get in touch.
         </p>
-        {success && <p className="mb-4 text-green-500 text-center">{success}</p>}
-        <form className="space-y-4" onSubmit={handleSubmit}>
-          <input aria-hidden="true" type="text" name="website" style={{ display: "none" }} tabIndex={-1} autoComplete="off" value={website} onChange={e => setWebsite(e.target.value)}/>
+        <div aria-live="polite" role="status">
+          {success && <p className="mb-4 text-green-500 text-center">{success}</p>}
+        </div>
+        <form className="space-y-4" onSubmit={handleSubmit} aria-busy={isLoading} noValidate>
+          <input
+            aria-hidden="true"
+            type="text"
+            name="website"
+            className="hidden"
+            tabIndex={-1}
+            autoComplete="off"
+            value={website}
+            onChange={(e) => setWebsite(e.target.value)}
+          />
           <div>
             <label htmlFor="name" className="block text-sm font-medium text-gray-300">
               Name
@@ -89,9 +101,10 @@ export default function Contact() {
               value={name || ""}
               onChange={(e) => setName(e.target.value)}
               aria-invalid={Boolean(errors.name)}
+              aria-describedby={errors.name ? "name-error" : undefined}
               className={`mt-1 w-full p-2 rounded bg-gray-800 border border-gray-700 text-white focus:outline-none input-gradient ${errors.name ? "input-error" : ""}`}
             />
-            {errors.name && <p className="text-red-500 text-sm" aria-live="polite">{errors.name}</p>}
+            {errors.name && <p id="name-error" className="text-red-500 text-sm" role="alert">{errors.name}</p>}
           </div>
           <div>
             <label htmlFor="email" className="block text-sm font-medium text-gray-300">
@@ -105,9 +118,10 @@ export default function Contact() {
               value={email || ""}
               onChange={(e) => setEmail(e.target.value)}
               aria-invalid={Boolean(errors.email)}
+              aria-describedby={errors.email ? "email-error" : undefined}
               className={`mt-1 w-full p-2 rounded bg-gray-800 border border-gray-700 text-white focus:outline-none input-gradient ${errors.email ? "input-error" : ""}`}
             />
-            {errors.email && <p className="mt-1 text-sm text-red-500" aria-live="polite">{errors.email}</p>}
+            {errors.email && <p id="email-error" className="mt-1 text-sm text-red-500" role="alert">{errors.email}</p>}
           </div>
           <div>
             <label htmlFor="message" className="block text-sm font-medium text-gray-300">
@@ -121,9 +135,10 @@ export default function Contact() {
               value={message || ""}
               onChange={(e) => setMessage(e.target.value)}
               aria-invalid={Boolean(errors.message)}
+              aria-describedby={errors.message ? "message-error" : undefined}
               className={`mt-1 w-full p-2 rounded bg-gray-800 border border-gray-700 text-white focus:outline-none input-gradient ${errors.message ? "input-error" : ""}`}
             />
-            {errors.message && <p className="mt-1 text-sm text-red-500" aria-live="polite">{errors.message}</p>}
+            {errors.message && <p id="message-error" className="mt-1 text-sm text-red-500" role="alert">{errors.message}</p>}
           </div>
           <div>
             <button
@@ -155,7 +170,7 @@ export default function Contact() {
             >
               {isLoading ? (
                 <div className="flex items-center space-x-2">
-                  <FaSpinner className="animate-spin" />
+                  <FaSpinner className="animate-spin" aria-hidden="true" />
                   <span>Sending...</span>
                 </div>
               ) : (
