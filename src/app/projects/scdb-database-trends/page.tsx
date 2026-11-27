@@ -48,7 +48,7 @@ export default function ScdbShowcase() {
             </div>
 
             <p className="text-gray-300 leading-relaxed">
-              As part of my Introduction to Database Systems course, I led a team of five developers to build a database system and a web application frontend for analyzing the Supreme Court Database (SCDB), which is a comprehensive collection of Supreme Court cases from the court's founding through 2023, hosted by Washington University Law.
+              As part of my Introduction to Database Systems course, I led a team of five developers to build a database system and a web application frontend for analyzing data from the Supreme Court Database (SCDB), now hosted by Penn State. We used data covering cases from the Court's founding through the 2023 term.
             </p>
             <p className="text-gray-300 leading-relaxed">
               Our goal was to design a database system with at least 500,000 tuples and demonstrate at least five complex trend queries. This meant we needed a rich, intersecting dataset that would let us explore a variety of data combinations and analyze trends over time.
@@ -221,7 +221,7 @@ export default function ScdbShowcase() {
 
         <section className="text-center">
           <Link
-            href="http://scdb.wustl.edu"
+            href="https://scdb.la.psu.edu/"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-block rounded-full bg-gradient-to-r from-blue-500 to-purple-500 px-5 py-3 text-sm font-semibold text-white transition-transform duration-150 hover:scale-105 hover:shadow-lg sm:px-6 sm:text-base"
